@@ -1,0 +1,109 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "projectFolderIgnoreList": [],
+    "project": "tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "indent": "off",
+    "linebreak-style": 0,
+    "@typescript-eslint/indent": ["error", 2],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "import/extensions": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "template-curly-spacing" : "off",
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-indent": [2],
+    "react/jsx-indent-props": [2],
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/button-has-type": "off",
+    "padded-blocks": [
+      "error",
+      {
+        "classes": "always"
+      }
+    ],
+    "class-methods-use-this": 0,
+    "react/prefer-stateless-function": 0,
+    "no-nested-ternary": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "components": [
+          "label"
+        ],
+        "required": {
+          "some": [
+            "nesting",
+            "id"
+          ]
+        },
+        "allowChildren": false
+      }
+    ],
+    "no-param-reassign": 0,
+    "import/prefer-default-export": "off",
+    "max-len": ["error", { "code": 140 }],
+    "@typescript-eslint/type-annotation-spacing": ["error"],
+    "@typescript-eslint/no-unsafe-call": 0,
+    "@typescript-eslint/no-unsafe-member-access": 0,
+    "@typescript-eslint/no-unsafe-assignment": 0,
+    "@typescript-eslint/unbound-method": 0,
+    "@typescript-eslint/no-explicit-any": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx"
+      ]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ]
+}

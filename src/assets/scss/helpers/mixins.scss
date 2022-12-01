@@ -1,0 +1,32 @@
+@mixin ellipsis-text($rowsCount: 1) {
+  box-orient: vertical;
+  display: box;
+  -webkit-line-clamp: $rowsCount;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+  
+@mixin scroll() {
+  &::-webkit-scrollbar-track {
+    background-color: var(--ext8);
+  }
+    
+  &::-webkit-scrollbar {
+    border-radius: 40px;
+    width: 4px;
+  }
+    
+  &::-webkit-scrollbar-thumb {
+    background-color: #A2A2A2 !important;
+    width: 4px;
+  }
+}
+
+@mixin link() {
+  color: #00D180;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

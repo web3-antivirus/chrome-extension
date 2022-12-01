@@ -1,0 +1,84 @@
+@import './helpers/theme';
+@import './helpers/fonts';
+
+:root {
+  --max-z-index-value: 2147483647;
+}
+
+.extension-nft-check {
+  @import './vendors/normalize';
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  body {
+    box-shadow: 0 100px 80px rgba(0, 0, 0, 0.0168519), 0 64.8148px 46.8519px rgba(0, 0, 0, 0.0274815), 0 38.5185px 25.4815px rgba(0, 0, 0, 0.035), 0 20px 13px rgba(0, 0, 0, 0.0425185), 0 8.14815px 6.51852px rgba(0, 0, 0, 0.0531481), 0 1.85185px 3.14815px rgba(0, 0, 0, 0.07);
+    height: 100%;
+    width: 434px;
+
+    &.light-ext {
+      outline: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // this line is needed for this font to be pulled up to https://superrare.com/
+  body,
+  button,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  input,
+  textarea {
+    font-family: 'Averta', sans-serif;
+  }
+
+  button {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    appearance: none;
+  }
+}
+
+// adding indent for an icon on niftygateway.com https://i.imgur.com/CeJkLRM.png
+.MuiBox-root[role=button] {
+  margin-right: 8px;
+}
+
+.ui-alerts {
+  padding: 0;
+}

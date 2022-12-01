@@ -1,0 +1,34 @@
+button.wrapper {
+  align-items: center;
+  background-color: #1B1E26;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px #999;
+  cursor: pointer;
+  display: inline-flex;
+  height: 26px;
+  justify-content: center;
+  margin-left: 1px;
+  vertical-align: 4%;
+  width: 97px;
+
+  &:hover {
+    opacity: 0.95;
+  }
+
+  &.active {
+    box-shadow: 0 0 0 1px #00D180;
+  }
+
+  &.darkThemeFromExternalMarketPlace {
+    box-shadow: 0 0 0 1px #00D180;
+
+    &.active {
+      box-shadow: 0 0 0 1px #00D180, 0 0 8px #00D180;
+    }
+  }
+}
+
+.logo {
+  height: 16px;
+}

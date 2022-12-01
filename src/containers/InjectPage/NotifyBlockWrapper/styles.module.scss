@@ -1,0 +1,15 @@
+.wrapper {
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.32);
+  border-radius: 64px;
+  color: #FFF;
+  overflow: hidden;
+  position: fixed;
+  right: 40px;
+  top: 40px;
+  z-index: var(--max-z-index-value) !important;
+
+  .icon {
+    margin-right: 16px;
+  }
+}

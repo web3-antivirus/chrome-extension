@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm --version
+yarn lint
+yarn lint:scss
+yarn type-check

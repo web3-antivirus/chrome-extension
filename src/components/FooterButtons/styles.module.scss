@@ -1,0 +1,25 @@
+.wrap {
+  .footerText {
+    color: var(--ext12);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 16px 0 12px;
+  }
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  .button {
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    width: calc(50% - 6px);
+  }
+}

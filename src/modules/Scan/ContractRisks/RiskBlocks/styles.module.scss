@@ -1,0 +1,30 @@
+.risksBlocks {
+  display: flex;
+  flex: 3;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .riskBlockWrapper {
+    flex: 1;
+  }
+
+  .popup {
+    position: relative;
+  }
+}
+
+.popupTitle {
+  color: var(--ext12);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+  margin: 0;
+}
+
+.popupDescription {
+  color: var(--ext18);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+  margin: 8px 0 0;
+}

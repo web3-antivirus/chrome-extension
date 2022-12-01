@@ -1,0 +1,17 @@
+.wrapper {
+  align-items: center;
+  column-gap: 5px;
+  display: flex;
+  justify-content: space-between;
+
+  .image {
+    height: 64px;
+    width: 187px;
+
+    &.active {
+      border-radius: 8px;
+      box-shadow: 0 0 0 2px #00D180;
+      padding: 1px 2px 2px;
+    }
+  }
+}

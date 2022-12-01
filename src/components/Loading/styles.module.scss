@@ -1,0 +1,38 @@
+@import 'assets/scss/helpers/typography';
+
+.wrapper {
+  background: var(--ext1);
+  min-height: 152px;
+  position: relative;
+
+
+  :global(.ui.loader.text) {
+    width: 258px !important;
+
+    p {
+      @include body-l(400);
+      color: var(--ext11);
+
+      a {
+        color: var(--ext4);
+        font-weight: 700;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &:active {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &::after {
+      border-color: #00B3771A #00B377 #00B377;
+    }
+
+    &::before {
+      border-color: transparent;
+    }
+  }
+}

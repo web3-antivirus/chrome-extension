@@ -1,0 +1,42 @@
+{
+  "name": "Web3 Antivirus",
+  "description": "Browse Web3 safely and avoid scams with Web3 Antivirus",
+  "version": "0.2.3",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Web3 Antivirus"
+  },
+  "permissions": ["storage", "unlimitedStorage", "tabs", "management", "cookies", "scripting"],
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": [
+        "/static/css/inject.css",
+        "/static/css/main.css"
+      ],
+      "js": [
+        "/static/js/inject.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["static/media/*", "script/main.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "background": {
+    "service_worker": "main.js"
+  },
+  "host_permissions": ["<all_urls>"]
+}
+
+

@@ -1,0 +1,43 @@
+.wrap {
+  border-bottom: 0.5px solid var(--ext27);
+  padding: 16px 0;
+}
+
+.title {
+  align-items: center;
+  color: var(--ext12);
+  display: flex;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  
+  .count {
+    color: var(--ext18);
+    margin-left: 4px;
+  }
+
+  .icon {
+    margin-right: 4px;
+  }
+}
+
+.activity {
+  margin-bottom: 16px;
+}
+
+.button {
+  align-items: center;
+  color: var(--ext2);
+  display: flex;
+
+  .arrow {
+    margin-left: 4px;
+  }
+}
+
+.message {
+  color: var(--ext18);
+  font-size: 13px;
+  line-height: 16px;
+  margin-top: 8px;
+}

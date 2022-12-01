@@ -1,0 +1,8 @@
+**/*.scss
+**/*.svg
+**/*.png
+**/*.woff2
+craco.config.js
+watch.js
+background.js
+script.js

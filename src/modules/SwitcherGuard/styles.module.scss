@@ -1,0 +1,80 @@
+.wrapper {
+  .switcher {
+    height: 24px;
+    min-height: 24px;
+    position: relative;
+    width: 48px;
+
+    // styles for unchecked
+    &:global(.ui.fitted.toggle.checkbox) {
+      height: 24px;
+      min-height: 24px;
+      width: 48px;
+
+      input {
+        height: 24px;
+        margin: 0;
+        min-height: 24px;
+        width: 48px;
+      }
+
+      &::before {
+        background-image: url('/assets/images/icons/shield-cross.svg');
+        content: '';
+        cursor: pointer;
+        height: 16px;
+        left: calc(100% - 21px);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        z-index: 2;
+      }
+
+      label {
+        padding: 0;
+
+        &::before {
+          background-color: #FF2843 !important;
+          border: 1px solid #CB2136;
+          height: 22px;
+          min-height: 22px;
+          width: 46px;
+        }
+
+        &::after {
+          background: #CB2136;
+          border: 2px solid #FFF;
+          box-shadow: none;
+          box-sizing: border-box;
+          height: 16px;
+          left: 3px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 16px;
+        }
+      }
+    }
+
+    &.checked {
+      &:global(.ui.fitted.toggle.checkbox) {
+        &::before {
+          background-image: url('/assets/images/icons/shield-ok.svg');
+          left: 5px;
+        }
+
+        label {
+          &::after {
+            background: #34A152;
+            left: calc(100% - 22px);
+          }
+
+          &::before {
+            background-color: #00D180 !important;
+            border: 1px solid #34A152;
+          }
+        }
+      }
+    }
+  }
+}
