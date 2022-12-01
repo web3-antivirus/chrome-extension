@@ -1,0 +1,56 @@
+.wrap {
+  padding: 16px 24px 24px;
+  
+  .contractTitle {
+    align-items: center;
+    color: var(--ext19);
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .address {
+    align-items: center;
+    color: var(--ext18);
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+  
+  .copyBtn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 4px;
+  }
+
+  .contract {
+    border-bottom: 0.5px solid var(--ext27);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+  }
+
+  .message {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 0 24px;
+
+    .text {
+      color: var(--ext12);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+      margin-bottom: 16px;
+      padding: 0 24px;
+      text-align: center;
+    }
+  }
+
+  .button {
+    padding: 10px 43px;
+  }
+}

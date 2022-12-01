@@ -1,0 +1,1 @@
+export const MAX_FEEDBACK_TEXTAREA_SYMBOLS = 500;

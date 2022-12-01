@@ -1,0 +1,31 @@
+import { FC } from 'react';
+import { createPortal } from 'react-dom';
+
+import Layout from 'components/Layout';
+import { getImageUrl } from 'helpers/image.helpers';
+import attentionIcon from 'assets/images/icons/attention-icon.svg';
+
+import styles from './styles.module.scss';
+
+interface Props {
+  description?: string
+  title: string
+  onClose: () => void
+}
+
+const PopupNotification: FC<Props> = ({ title, description, onClose }) => {
+
+  const renderContent = () => (
+    <Layout onClose={onClose}>
+      <div className={styles.wrap}>
+        <img src={getImageUrl(attentionIcon)} alt="attention" className={styles.icon} />
+        <div className={styles.description}>{description}</div>
+        <div className={styles.title}>{title}</div>
+      </div>
+    </Layout>
+  );
+
+  return createPortal(renderContent(), document.body);
+};
+
+export default PopupNotification;

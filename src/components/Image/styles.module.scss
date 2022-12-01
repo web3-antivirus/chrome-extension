@@ -1,0 +1,22 @@
+.wrap {
+  border-radius: 8px;
+  grid-area: image;
+  height: 114px;
+  position: relative;
+  width: 114px;
+
+  .img {
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .externalId {
+    color: #FFF;
+    font-size: 13px;
+    line-height: 18px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+  }
+}

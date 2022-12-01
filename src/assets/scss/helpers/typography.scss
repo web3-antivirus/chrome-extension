@@ -1,0 +1,23 @@
+@mixin body-xl {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+@mixin body-l($font-weight: 400) {
+  font-size: 13px;
+  font-weight: $font-weight;
+  line-height: 16px;
+}
+
+@mixin body-m($font-weight: 400) {
+  font-size: 12px;
+  font-weight: $font-weight;
+  line-height: 15px;
+}
+
+@mixin body-s {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+}

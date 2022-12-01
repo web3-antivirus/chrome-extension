@@ -1,0 +1,26 @@
+.wrap {
+  background: var(--ext1);
+  padding: 24px;
+
+  .icon {
+    height: 32px;
+    margin-bottom: 24px;
+    width: 32px;
+  }
+
+  .title {
+    color: var(--ext12);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    color: var(--ext18);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 140%;
+    margin-bottom: 24px;
+  }
+}

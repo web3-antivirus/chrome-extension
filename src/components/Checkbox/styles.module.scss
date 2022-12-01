@@ -1,0 +1,77 @@
+@import 'assets/scss/helpers/typography';
+
+.checkboxContainer {
+  box-sizing: content-box;
+  display: inline-block;
+
+  .label {
+    @include body-l(600);
+    align-items: center;
+    color: var(--ext12);
+    cursor: pointer;
+    display: flex;
+    height: 16px;
+    padding-left: 28px;
+    position: relative;
+    user-select: none;
+
+    input {
+      cursor: pointer;
+      height: 0;
+      opacity: 0;
+      position: absolute;
+      width: 0;
+    }
+
+    .checkmark {
+      border: 2px solid #A2A2A2;
+      border-radius: 6px;
+      box-sizing: content-box;
+      height: 16px;
+      left: 0;
+      position: absolute;
+      width: 16px;
+    }
+
+    &:hover {
+      input ~ .checkmark {
+        border-color: #00B377;
+      }
+    }
+
+    input:checked ~ .checkmark {
+      background-color: #00D180;
+      border: 2px solid #00D180;
+
+      &:hover {
+        background-color: #00B377;
+        border: 2px solid #00B377;
+      }
+    }
+
+    .checkmark::after {
+      box-sizing: content-box;
+      content: '';
+      display: none;
+      position: absolute;
+    }
+
+    input:checked ~ .checkmark::after {
+      display: block;
+    }
+
+    .checkmark::after {
+      border: solid #FFF;
+      border-width: 0 2px 2px 0;
+      height: 9px;
+      left: 6px;
+      top: 1px;
+      transform: rotate(45deg);
+      transform: rotate(45deg);
+      transform: rotate(45deg);
+      width: 3px;
+    }
+  }
+}
+
+

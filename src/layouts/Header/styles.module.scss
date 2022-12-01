@@ -1,0 +1,32 @@
+@import 'assets/scss/helpers/typography';
+
+.wrapper {
+  align-items: center;
+  background: var(--ext8);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+
+.icons {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.logo {
+  margin-bottom: 8px;
+}
+
+.settingsIcon {
+  :global(.icon) {
+    fill: var(--ext8);
+  }
+}
+
+.feedbackIcon {
+  :global(.icon) {
+    fill: var(--ext8);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "high": true,
+  "whitelist": ["ansi-regex", "trim-newlines", "terser"]
+}

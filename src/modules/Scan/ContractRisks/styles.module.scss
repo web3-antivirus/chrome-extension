@@ -1,0 +1,163 @@
+.wrapper {
+  padding: 16px 24px 24px;
+
+  .check {
+    height: 12px;
+    margin-left: 4px;
+    width: 12px;
+  }
+
+  .contractTitle {
+    align-items: center;
+    color: var(--ext19);
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    margin-bottom: 4px;
+  }
+
+  .address {
+    align-items: center;
+    color: var(--ext18);
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+
+  .copyBtn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 4px;
+  }
+
+  .contract,
+  .contractName,
+  .collection,
+  .marketInfoWrapper {
+    border-bottom: 0.5px solid var(--ext27);
+    padding-bottom: 8px;
+  }
+
+  .contractName,
+  .marketInfo {
+    display: flex;
+  }
+
+  .infoBlock {
+    margin-top: 8px;
+    width: 50%;
+  }
+
+  .collection {
+    align-items: center;
+    color: var(--ext19);
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    padding-top: 16px;
+
+    .collectionImg {
+      height: 36px;
+      margin-right: 8px;
+      position: relative;
+      width: 36px;
+
+      &.verified {
+        &::before {
+          background-image: url('/assets/images/icons/verified.svg');
+          bottom: 0;
+          content: '';
+          height: 12px;
+          position: absolute;
+          right: 0;
+          width: 12px;
+        }
+      }
+
+      .logo {
+        border-radius: 50%;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+
+  .percents,
+  .risks {
+    border-bottom: 0.5px solid var(--ext27);
+    padding: 16px 0;
+  }
+
+  .risks {
+    .riskTitle {
+      color: var(--ext12);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 16px;
+      margin-bottom: 12px;
+    }
+  }
+
+  .percents {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .score {
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 44px;
+
+      &.low {
+        color: #00D180;
+      }
+
+      &.medium {
+        color: #FFBB52;
+      }
+
+      &.high {
+        color: #FF2843;
+      }
+    }
+
+    .textScore {
+      color: var(--ext11);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+
+  .footer {
+    .footerText {
+      color: var(--ext12);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+      margin: 16px 0 12px;
+    }
+  }
+
+  .buttons {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      align-items: center;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: flex;
+      height: 36px;
+      justify-content: center;
+      width: calc(50% - 6px);
+    }
+  }
+}

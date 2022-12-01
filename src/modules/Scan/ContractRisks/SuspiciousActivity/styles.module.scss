@@ -1,0 +1,150 @@
+
+.section {
+  border-bottom: 0.5px solid var(--ext27);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+}
+
+.title {
+  color: var(--ext12);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  margin-bottom: 4px;
+
+  .count {
+    color: var(--ext18);
+    margin-left: 4px;
+  }
+}
+
+.activity {
+  align-items: center;
+  display: flex;
+  font-size: 13px;
+  line-height: 16px;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+    
+  .link {
+    color: var(--ext2);
+    text-decoration: underline;
+  }
+
+  .date {
+    color: var(--ext18);
+    margin-right: 4px;
+  }
+
+  .message {
+    align-items: center;
+    color: var(--ext19);
+    display: flex;
+
+    img {
+      margin-left: 4px;
+    }
+  }
+}
+
+.description {
+  color: var(--ext18);
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 12px;
+}
+
+.hardcode {
+  align-items: center;
+  display: flex;
+
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  .index {
+    color: var(--ext18);
+    font-size: 11px;
+    line-height: 13px;
+    margin-right: 8px;
+  }
+
+  .row {
+    align-items: center;
+    color: var(--ext12);
+    display: flex;
+    font-size: 11px;
+    line-height: 13px;
+
+    .value {
+      align-items: center;
+      display: flex;
+      margin-left: 4px;
+
+      a {
+        align-items: center;
+        color: var(--ext12);
+        display: flex;
+      }
+    }
+
+    .link {
+      img {
+        margin-left: 4px;
+      }
+    }
+  }
+}
+
+
+.activities {
+  max-height: 180px;
+}
+
+.hardcodes {
+  max-height: 272px;
+}
+
+.activities,
+.hardcodes {
+  overflow-y: auto;
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--ext8);
+  }
+
+  &::-webkit-scrollbar {
+    border-radius: 40px;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #A2A2A2 !important;
+    width: 4px;
+  }
+}
+
+.wrap {
+  .button {
+    align-items: center;
+    border: 1px solid var(--ext2);
+    border-radius: 32px;
+    color: var(--ext2);
+    display: flex;
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 24px;
+    padding: 8px 24px;
+
+    &:hover {
+      opacity: 0.8;
+      transition: 0.3s all ease;
+    }
+
+    img {
+      margin-right: 4px;
+    }
+  }
+}
