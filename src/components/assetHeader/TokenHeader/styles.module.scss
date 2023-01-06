@@ -1,0 +1,6 @@
+@import 'assets/scss/helpers/typography';
+
+.name {
+  @include h1();
+  padding-bottom: 12px;
+}

@@ -1,0 +1,30 @@
+@import '../../../assets/scss/helpers/typography';
+
+.wrap {
+  .activity {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+  
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    .date,
+    .count {
+      color: var(--extGray4);
+    }
+
+    .text {
+      color: var(--extBlack);
+    }
+
+    .date {
+      margin-bottom: 4px;
+    }
+
+    .count {
+      margin-left: 4px;
+    }
+  }
+}

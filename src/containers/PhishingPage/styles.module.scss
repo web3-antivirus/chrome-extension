@@ -1,3 +1,6 @@
+@import '../../assets/scss/helpers/mixins';
+@import '../../assets/scss/helpers/typography';
+
 .web3GuardWrapper {
   background: #FFF;
   bottom: 0;
@@ -17,44 +20,58 @@
     margin-right: auto;
     max-width: 100%;
     padding: 0 20px;
-    width: 800px;
+    width: 749px;
   }
-  
+
   .icon {
-    height: 84px;
-    margin-bottom: 56px;
-    width: 84px;
+    height: 80px;
+    margin-bottom: 32px;
+    width: 80px;
   }
-  
+
   .title {
     color: #000;
     font-size: 32px;
-    font-weight: 600;
-    line-height: 44px;
-    margin-bottom: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 40px;
+    margin-bottom: 16px;
   }
-  
+
   .description {
-    color: #79848E;
+    color: #808080;
     font-size: 18px;
     font-weight: 400;
-    line-height: 22px;
-    margin-bottom: 64px;
+    line-height: 28px;
+    margin-bottom: 48px;
+
+    .subDescription {
+      margin-top: 16px;
+    }
+
+    .accent {
+      @include link();
+    }
   }
-  
+
   .buttonWrapper {
     align-items: center;
-    column-gap: 16px;
+    column-gap: 8px;
     display: flex;
     margin-bottom: 24px;
 
     .button {
-      height: fit-content;
-      padding: 10px 20px;
+      @include d-flex();
     }
   }
 
   .label {
-    font-weight: 400;
+    @include r2();
+  }
+
+  .logo {
+    height: 32px;
+    margin-top: 178px;
+    width: 226px;
   }
 }

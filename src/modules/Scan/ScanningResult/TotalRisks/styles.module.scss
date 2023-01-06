@@ -1,0 +1,123 @@
+@import '../../../../assets/scss/helpers/typography';
+@import '../../../../assets/scss/helpers/mixins';
+
+.wrap {
+  margin-bottom: 24px;
+
+  .total {
+    align-items: center;
+    display: flex;
+    margin-bottom: 8px;
+    
+    &.noData {
+      cursor: default;
+    }
+
+    .count {
+      @include r1-b;
+      color: var(--extPrimary);
+      margin: 0 4px;
+
+      &.hasRisks {
+        color: var(--extError);
+      }
+    }
+  }
+
+  .arrow {
+    transform: rotate(180deg);
+    transition: 0.3s;
+
+    &.open {
+      transform: rotate(0deg);
+    }
+  }
+
+  .risks {
+    overflow: hidden;
+    transition: 0.3s;
+
+    .risk {
+      @include d-flex(center, space-between);
+      border: 1px solid var(--extGray2);
+      border-radius: 16px;
+      padding: 13.5px 10px 13.5px 16px;
+      transition: 0.3s;
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      .description {
+        color: var(--extGray5);
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 16px;
+        margin-top: 4px;
+      }
+
+      .main {
+        @include d-flex(center, flex-start);
+
+        img {
+          height: 16px;
+          margin-right: 8px;
+          width: 16px;
+
+          &.verified {
+            height: 20px;
+            width: 20px;
+          }
+        }
+
+        .label {
+          @include r3;
+          background: var(--extGray1);
+          border-radius: 24px;
+          color: var(--extGray5);
+          margin-left: 8px;
+          padding: 2px 6px 1px;
+        }
+      }
+
+      .name {
+        @include ellipsis-text(1, 198px);
+        color: var(--extBlack);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 21px;
+      }
+
+      .risksWrap {
+        @include d-flex(center, flex-end);
+
+        .count {
+          color: var(--extGray5);
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 21px;
+          margin-right: 8px;
+        }
+
+        .arrowRisk {
+          transform: rotate(90deg);
+
+          path {
+            stroke: var(--extGray5);
+          }
+        }
+      }
+
+      &:hover {
+        border-color: var(--extBlack);
+
+        .arrowRisk {
+          path {
+            stroke: var(--extBlack);
+          }
+        }
+      }
+    }
+  }
+}

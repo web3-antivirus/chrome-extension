@@ -1,0 +1,26 @@
+@import 'assets/scss/helpers/typography';
+
+.item {
+  align-items: center;
+  column-gap: 12px;
+  display: grid;
+  grid-template-areas: 'image name';
+  grid-template-columns: 40px 1fr;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.name {
+  @include body-xl;
+  color: var(--extBlack);
+  grid-area: name;
+  line-height: 22px;
+}
+
+.image {
+  border-radius: 50%;
+  grid-area: image;
+  height: 40px;
+  object-fit: cover;
+  width: 40px;
+}

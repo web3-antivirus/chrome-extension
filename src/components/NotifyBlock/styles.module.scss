@@ -1,27 +1,24 @@
-@import 'assets/scss/helpers/typography';
+@import '../../assets/scss/helpers/typography';
+@import '../../assets/scss/helpers/mixins';
 
 .wrapper {
-  align-items: center;
-  backdrop-filter: blur(20px);
+  @include d-flex(center, flex-start);
+  backdrop-filter: blur(12px);
   background: rgba(0, 0, 0, 0.32);
-  display: flex;
   min-width: 386px;
   padding: 16px;
 }
 
 .textWrap {
   .description {
-    color: rgba(#FFF, 0.68);
-    font-size: 13px;
-    line-height: 16px;
+    @include r2(var(--extWhite));
     margin-bottom: 4px;
+    opacity: 0.68;
   }
 
   .title {
-    color: #FFF;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
+    @include body-xl(700);
+    color: var(--extWhite);
   }
 }
 

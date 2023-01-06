@@ -1,8 +1,8 @@
 .wrapper {
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
   background: rgba(0, 0, 0, 0.32);
   border-radius: 64px;
-  color: #FFF;
+  color: var(--extWhite);
   overflow: hidden;
   position: fixed;
   right: 40px;

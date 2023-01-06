@@ -1,10 +1,13 @@
 import { FC, memo } from 'react';
 import { ScreenProvider } from 'components/ScreenProvider';
 import Popup from 'containers/popup';
+import ToggleProvider from 'context/toggle.context';
 
 const PageIndex: FC = () => (
   <ScreenProvider>
-    <Popup />
+    <ToggleProvider>
+      <Popup />
+    </ToggleProvider>
   </ScreenProvider>
 );
 

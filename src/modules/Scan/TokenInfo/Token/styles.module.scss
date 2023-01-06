@@ -1,0 +1,19 @@
+@import 'assets/scss/helpers/typography';
+
+.values {
+  column-gap: 2px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 16px;
+}
+
+.firstLabel,
+.secondLabel {
+  @include r2(var(--extGray4));
+}
+
+.firstCell,
+.secondCell {
+  @include r1;
+  font-weight: 400;
+}

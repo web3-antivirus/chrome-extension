@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import { getValueToChromeStorage, setValueToChromeStorage, subscribeChangesChromeStorage } from 'helpers/chrome-storage.helpers';
 import { STORAGE_WHITELIST_FOR_WEB3_GUARD } from 'constants/chrome-storage.constants';
 import { DEFAULT_WHITE_LIST_FOR_WEB3_GUARD } from 'constants/web3-guard.constants';

@@ -1,0 +1,37 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  .input {
+    background-color: var(--extGray1);
+    border: 1px solid var(--extGray2);
+    border-radius: 12px;
+    box-sizing: border-box;
+    color: var(--extBlack);
+    outline: none;
+    padding: 13.5px 16px;
+    transition: 0.3s;
+    width: 100%;
+
+    &:hover {
+      border-color: var(--extGray4);
+    }
+
+    &:focus,
+    &:active {
+      border-color: var(--extBlack);
+    }
+
+    &::placeholder {
+      color: rgba(#000, 0.32);
+    }
+
+    &.withError {
+      border-color: var(--extError);
+    }
+  }
+
+  .error {
+    @include r2;
+    color: var(--extError);
+  }
+}

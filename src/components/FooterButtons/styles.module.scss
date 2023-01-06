@@ -1,25 +1,27 @@
+@import '../../assets/scss/helpers/mixins';
+@import '../../assets/scss/helpers/typography';
+
 .wrap {
+  background: var(--extGray1);
+  padding: 16px;
+
   .footerText {
-    color: var(--ext12);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-    margin: 16px 0 12px;
+    @include h1();
+    color: var(--extBlack);
+    margin-bottom: 16px;
+    margin-top: 0;
+    text-align: center;
   }
 }
 
 .buttons {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
+  @include d-flex(center, space-between);
+  column-gap: 8px;
 
   .button {
-    align-items: center;
+    @include d-flex();
     box-sizing: border-box;
-    cursor: pointer;
-    display: flex;
-    height: 36px;
-    justify-content: center;
-    width: calc(50% - 6px);
+    height: 48px;
+    width: calc(50% - 4px);
   }
 }

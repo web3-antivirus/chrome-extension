@@ -1,13 +1,11 @@
-import { useState, useEffect } from 'react';
-
 import { CHANGE_URL } from 'constants/background.constants';
 import { POPUP_PROTOCOL } from 'constants/url.constants';
-import { logError } from 'helpers/log.helpers';
+import { useState, useEffect } from 'react';
 
 export const useCurrentUrl = (): string => {
   const [currentUrl, setCurrentUrl] = useState<string>('');
 
-  // 1. get current url when opening popup
+  // 1. get current url for when opening popUp
   useEffect(() => {
     (async () => {
       if (chrome.tabs) {
@@ -18,11 +16,11 @@ export const useCurrentUrl = (): string => {
           setCurrentUrl(tab.url);
         }
       }
-    })().catch((e) => logError(e));
+    })().catch((e) => console.log(e));
   }, []);
 
   useEffect(() => {
-    //  get url on page change and open popUp
+    // get url on page change and open popUp
     if (chrome.tabs) {
       chrome.tabs.onUpdated.addListener((_, __, tab) => {
         if (tab.url) {

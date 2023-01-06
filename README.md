@@ -2,8 +2,8 @@
 ## General information
 There are three entry points into the application:
 
-    index.tsx - this code will be inserted into popUp http://joxi.ru/4Akx494CVyb5Qr
-    inject.tsx - this code will be inserted into external pages http://joxi.ru/12M0qNqU8MnnQm
+    index.tsx - this code will be inserted into popUp
+    inject.tsx - this code will be inserted into external pages
     background.js - https://developer.chrome.com/docs/extensions/mv3/service_workers/
 
 Work of three different entry points configured through craco.config.js

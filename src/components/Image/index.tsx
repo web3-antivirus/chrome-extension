@@ -1,13 +1,11 @@
 import { FC } from 'react';
 import cn from 'classnames';
-
 import { ImageSize } from 'services/token/shared/enums';
 import { tokenService } from 'services/token/token.service';
 import { fixImageLink } from 'helpers/image.helpers';
-
 import styles from './styles.module.scss';
 
-interface Props {
+type Props = {
   imgClassName?: string;
   className?: string;
   url: string;
@@ -15,7 +13,7 @@ interface Props {
   name: string;
   externalId: string;
   croppedPreviewURL: string;
-}
+};
 
 const Image: FC<Props> = ({
   url, animationUrl, name, externalId, croppedPreviewURL, imgClassName, className,

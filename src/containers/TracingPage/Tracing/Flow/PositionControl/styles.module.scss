@@ -1,0 +1,26 @@
+@import '../../../mixin';
+
+.buttons {
+  z-index: var(--max-z-index-value) !important;
+
+  .buttonWrapper {
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    button {
+      @include cursorPointer();
+      padding: 10px 27.5px;
+    }
+  }
+
+  .btnInner {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .icon {
+    margin-left: 8px;
+  }
+}

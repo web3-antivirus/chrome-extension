@@ -1,10 +1,8 @@
 import { FC } from 'react';
-
 import { AnalysisDescriptor } from 'types/fetch.type';
 import alertIcon from 'assets/images/icons/alert.svg';
 import rightArrowIcon from 'assets/images/icons/arrow-right.svg';
 import { getImageUrl } from 'helpers/image.helpers';
-
 import styles from './styles.module.scss';
 
 interface Props {
@@ -14,7 +12,6 @@ interface Props {
 
 const Suspicious: FC<Props> = ({ data, handleOpen }) => {
   const { code, scam } = data;
-
   const hasSuspiciousActivity = !!scam?.service1?.annotation || !!scam?.service2?.length;
   const hasHardcodedLogic = code?.service3 && 'payload' in code.service3 && !!code.service3.payload?.hardcodedAddresses.length;
 

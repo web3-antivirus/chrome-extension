@@ -26,7 +26,9 @@ export class TokenService {
     }
 
     const httpURL = url.replace('ipfs://', 'https://ipfs.io/ipfs/');
-    return httpURL;
+    // for cases where route /ipfs returns from backend
+    const filteredURL = httpURL.replace('ipfs/ipfs/', 'ipfs/');
+    return filteredURL;
   }
 
   /**

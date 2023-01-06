@@ -5,7 +5,7 @@ import {
   RefObject, useCallback, useEffect, useRef, useState,
 } from 'react';
 
-export const useExtensionScroll = (className: string): void => {
+export const useExtensionScroll = (className: string) => {
 
   useEffect(() => {
     const [container] = document.getElementsByClassName(className);

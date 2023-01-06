@@ -1,0 +1,42 @@
+@import '../../../assets/scss/helpers/typography';
+
+.wrap {
+  .description {
+    color: var(--extGray5);
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .hardcode {
+    @include r2;
+    align-items: center;
+    display: flex;
+  
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  
+    .index {
+      color: var(--extGray4);
+      margin-right: 8px;
+    }
+  
+    .row {
+      align-items: center;
+      display: flex;
+  
+      .value {
+        align-items: center;
+        display: flex;
+        margin-left: 4px;
+  
+        a {
+          align-items: center;
+          color: var(--extPrimary);
+          display: flex;
+        }
+      }
+    }
+  }
+}

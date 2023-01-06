@@ -1,8 +1,6 @@
-import { logError } from './log.helpers';
-
 export const setValueToChromeStorage = <TValue>(key: string, value: TValue): void => {
   if (chrome.storage) {
-    chrome.storage.local.set({ [key]: value }).then().catch((e) => logError(e));
+    chrome.storage.local.set({ [key]: value }).then().catch((e) => console.log(e));
   }
 };
 
@@ -17,7 +15,7 @@ export const getValueToChromeStorage = <TDefault, TVal>(key: string, onChange: (
 
 export const setValueToSyncChromeStorage = <TValue>(key: string, value: TValue): void => {
   if (chrome.storage) {
-    chrome.storage.sync.set({ [key]: value }).then().catch((e) => logError(e));
+    chrome.storage.sync.set({ [key]: value }).then().catch((e) => console.log(e));
   }
 };
 
@@ -39,6 +37,27 @@ export const subscribeChangesChromeStorage = <TValue, TOldValue>(
       if (changes[key]) {
         onChange(changes[key]?.newValue, changes[key]?.oldValue);
       }
+    });
+  }
+};
+
+export const getValueFromSessionChromeStorage = <TValue>(key: string): Promise<TValue | null> => {
+  if (chrome.storage) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return chrome.storage.session.get(key) as Promise<TValue | null>;
+  }
+
+  return Promise.resolve(null);
+};
+
+export const setValueToSessionChromeStorage = async <TValue>(key: string, value: TValue): Promise<void> => {
+
+  if (chrome.storage) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    await chrome.storage.session.set({
+      [key]: value,
     });
   }
 };

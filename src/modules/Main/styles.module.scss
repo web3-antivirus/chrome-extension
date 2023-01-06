@@ -1,0 +1,78 @@
+.wrapper {
+  background-color: var(--extWhite);
+  color: var(--extBlack);
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  padding: 0 16px 24px;
+
+  &::-webkit-scrollbar-thumb {
+    background-clip: content-box;
+    background-color: var(--ext15);
+    border: 2px solid transparent;
+    border-radius: 24px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--ext14);
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0 0 8px;
+  }
+
+  .guard,
+  .appearance {
+    border-bottom: 0.5px solid var(--ext27);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    padding: 16px 0;
+  }
+
+  .guard {
+    border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+
+    .main {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .disabledMessage {
+      color: var(--ext18);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 14px;
+      margin-top: 8px;
+    }
+  }
+
+  .themeTitle {
+    margin-bottom: 12px;
+  }
+
+  .buttonWrapper {
+    align-items: center;
+    display: flex;
+    margin-top: 16px;
+
+    .button {
+      height: fit-content;
+      padding: 10px 43px;
+      width: fit-content;
+    }
+  }
+}
+
+.scroll {
+  background-color: var(--extWhite);
+  max-height: 553px;
+  overflow-x: auto;
+}

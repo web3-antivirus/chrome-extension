@@ -1,0 +1,52 @@
+@import '../../../assets/scss/helpers/typography';
+
+.wrap {
+  .header {
+    border: 1px solid var(--extGray3);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 12px;
+    padding: 12px;
+
+    .item {
+      .name {
+        @include r2;
+        color: var(--extGray4);
+        margin-bottom: 2px;
+      }
+
+      .value {
+        @include r1;
+      }
+    }
+  }
+
+  .detectors {
+    .detector {
+      align-items: center;
+      display: flex;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      .index {
+        @include r2;
+        color: var(--extGray4);
+        margin-right: 4px;
+      }
+
+      .name {
+        background-color: var(--extGray1);
+        border-radius: 4px;
+        color: var(--extBlack);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 20px;
+        margin-right: 4px;
+        padding: 2px 8px;
+      }
+    }
+  }
+}

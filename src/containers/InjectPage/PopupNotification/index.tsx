@@ -4,7 +4,6 @@ import { createPortal } from 'react-dom';
 import Layout from 'components/Layout';
 import { getImageUrl } from 'helpers/image.helpers';
 import attentionIcon from 'assets/images/icons/attention-icon.svg';
-
 import styles from './styles.module.scss';
 
 interface Props {
@@ -13,10 +12,10 @@ interface Props {
   onClose: () => void
 }
 
-const PopupNotification: FC<Props> = ({ title, description, onClose }) => {
+const PopupNotification: FC<Props> = ({ title, description }) => {
 
   const renderContent = () => (
-    <Layout onClose={onClose}>
+    <Layout>
       <div className={styles.wrap}>
         <img src={getImageUrl(attentionIcon)} alt="attention" className={styles.icon} />
         <div className={styles.description}>{description}</div>

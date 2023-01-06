@@ -7,15 +7,15 @@
   top: 0;
   z-index: calc(var(--max-z-index-value) - 1) !important;
 }
-  
+
 .wrapper {
   background: #FFF;
   border: initial;
-  box-shadow: 0 100px 80px rgba(0, 0, 0, 0.0168519), 0 64.8148px 46.8519px rgba(0, 0, 0, 0.0274815), 0 38.5185px 25.4815px rgba(0, 0, 0, 0.035), 0 20px 13px rgba(0, 0, 0, 0.0425185), 0 8.14815px 6.51852px rgba(0, 0, 0, 0.0531481), 0 1.85185px 3.14815px rgba(0, 0, 0, 0.07);
-  max-width: 450px;
+  max-width: 434px;
   overflow: hidden;
   position: fixed;
   right: 40px;
   top: 40px;
+  width: 100%;
   z-index: var(--max-z-index-value) !important;
 }

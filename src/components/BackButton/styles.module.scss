@@ -1,0 +1,27 @@
+.wrap {
+  align-items: center;
+  color: var(--extBlack);
+  display: flex;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  transition: 0.3s;
+
+  .icon {
+    height: 12px;
+    margin-bottom: 2px;
+    transform: rotate(-90deg);
+    width: 12px;
+  }
+
+  &:hover {
+    color: var(--extGray6);
+
+    .icon {
+      path {
+        stroke: var(--extGray6);
+      }
+    }
+  }
+}

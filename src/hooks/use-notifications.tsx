@@ -1,12 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
 import { ERROR_NOTIFICATION } from 'constants/background.constants';
+import { useState, useEffect, useCallback } from 'react';
 
-interface INotificationsReturn {
-  notification: string;
-  clearNotification: () => void;
-}
-
-export const useNotifications = (): INotificationsReturn => {
+export const useNotifications = () => {
   const [currentNotification, setCurrentNotification] = useState<string>('');
 
   useEffect(() => {

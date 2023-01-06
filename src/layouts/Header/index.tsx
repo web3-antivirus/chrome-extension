@@ -1,55 +1,17 @@
 import { FC, memo } from 'react';
+import cn from 'classnames';
 
 import Logo from 'modules/Logo';
-import {
-  CloseIcon,
-  MessageIcon,
-  SettingsIcon,
-} from 'constants/icons.constants';
-
+import { useToggle } from 'context/toggle.context';
 import styles from './styles.module.scss';
 
-type Props = {
-  toggleSettings?: () => void;
-  toggleFeedback?: () => void;
-  isShowSettingsButton?: boolean;
-  onClose?: () => void;
-};
-
-const Header: FC<Props> = ({
-  toggleFeedback,
-  toggleSettings,
-  isShowSettingsButton,
-  onClose,
-}) => (
-  <div className={styles.wrapper}>
-    <Logo />
-    <div className={styles.icons}>
-      {onClose ? (
-        <button onClick={onClose}>
-          <CloseIcon />
-        </button>
-      ) : (
-        <>
-          <button onClick={toggleFeedback}>
-            <MessageIcon classNames={styles.feedbackIcon} />
-          </button>
-          {isShowSettingsButton && toggleSettings && (
-            <button onClick={toggleSettings}>
-              <SettingsIcon classNames={styles.settingsIcon} />
-            </button>
-          )}
-        </>
-      )}
+const Header: FC = () => {
+  const { pause } = useToggle();
+  return (
+    <div className={cn(styles.wrapper, { [styles.disabled]: pause.isPaused })}>
+      <Logo />
     </div>
-  </div>
-);
-
-Header.defaultProps = {
-  toggleFeedback: () => null,
-  toggleSettings: () => null,
-  isShowSettingsButton: true,
-  onClose: undefined,
+  );
 };
 
 export default memo(Header);

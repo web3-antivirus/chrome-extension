@@ -5,7 +5,6 @@ import { format } from 'date-fns';
 import logo from 'assets/images/no-token-avatar.svg';
 import { Collection, Statistic } from 'types/fetch.type';
 import { getImageUrl } from 'helpers/image.helpers';
-
 import InfoBlock from '../InfoBlock';
 import styles from '../styles.module.scss';
 

@@ -1,0 +1,51 @@
+.promptContainer {
+  background: var(--extWhite);
+  border: 1px solid #D6D6D6;
+  border-radius: 16px;
+  min-width: 696px;
+  padding: 24px;
+  position: relative;
+
+  .prompts {
+    column-gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .prompt {
+      text-align: center;
+
+      p {
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+  }
+
+  .closeButton {
+    align-items: center;
+    border: 0;
+    border-radius: 6px;
+    display: flex;
+    height: 24px;
+    padding: 6px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    transition: 0.3s;
+    width: 24px;
+
+    svg {
+      transition: 0.3s;
+    }
+
+    &:hover {
+      background-color: #00D180;
+
+      svg {
+        stroke: #FFF;
+        transition: 0.3s;
+      }
+    }
+  }
+
+}

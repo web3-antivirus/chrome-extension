@@ -1,0 +1,19 @@
+.wrap {
+  background-color: var(--extGray1);
+  padding: 24px 16px;
+
+  .title {
+    color: var(--extBlack);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    margin-bottom: 8px;
+  }
+
+  .description {
+    color: var(--extGray5);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+}

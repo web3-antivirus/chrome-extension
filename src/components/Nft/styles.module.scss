@@ -1,0 +1,30 @@
+@import 'assets/scss/helpers/typography';
+
+.item {
+  column-gap: 8px;
+  display: grid;
+  grid-template-areas: 
+    'image name'
+    'image collection';
+  grid-template-columns: 40px 1fr;
+  margin-bottom: 12px;
+}
+
+.name {
+  @include h3;
+  grid-area: name;
+  word-break: break-word;
+}
+
+.collection {
+  @include r2(var(--extGray5));
+  grid-area: collection;
+}
+
+.image {
+  border-radius: 8px;
+  grid-area: image;
+  height: 40px;
+  object-fit: cover;
+  width: 40px;
+}

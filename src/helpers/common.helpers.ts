@@ -8,7 +8,7 @@ export const addScriptTagInPage = (): void => {
   (window.document.head || window.document.documentElement).appendChild(script);
 };
 
-export const getDateByTimeStamp = (timestamp: number): string => new Date(timestamp).toLocaleDateString();
+export const getDateByTimeStamp = (timestamp: number): string => new Date(timestamp).toISOString();
 
 export const getQueryStringParams = (url: string): Record<string, string> => {
   const query = url.slice(url.indexOf('?') + 1);
@@ -23,3 +23,17 @@ export const getQueryStringParams = (url: string): Record<string, string> => {
       }, {})
     : {});
 };
+
+export const copyText = async (text: string): Promise<void> => {
+  await navigator.clipboard.writeText(text);
+};
+
+export const groupBy = <T>(
+  array: T[], predicate: (value: T, index: number, array: T[]) => string) => array.reduce((acc, value, index, arr) => {
+  (acc[predicate(value, index, arr)] ||= []).push(value);
+  return acc;
+}, {} as { [key: string]: T[] });
+
+export const getNftName = (id: string, name?: string): string => (name ? `${name}` : `#${id}`);
+
+export const isNull = (value: string | number | null | undefined): boolean => value === null || value === undefined;

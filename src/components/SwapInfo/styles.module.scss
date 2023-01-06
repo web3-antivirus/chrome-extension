@@ -1,0 +1,95 @@
+@import 'assets/scss/helpers/mixins';
+
+.wrap {
+  border: 1px solid var(--extGray3);
+  border-radius: 16px;
+  padding: 16px;
+
+  .row {
+    align-items: center;
+    display: flex;
+    font-size: 15px;
+    justify-content: space-between;
+    line-height: 21px;
+    word-break: break-word;
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    .data {
+      align-items: center;
+      display: flex;
+      min-width: 30%;
+
+      img {
+        margin-right: 8px;
+      }
+
+      .name {
+        @include ellipsis-text();
+        color: var(--extBlack);
+        max-width: 240px;
+        white-space: nowrap;
+
+        &.link {
+          @include link;
+          font-size: 15px;
+          line-height: 21px;
+        }
+      }
+    }
+
+    .value {
+      color: var(--extError);
+      font-weight: 700;
+
+      &.isIncome {
+        color: var(--extPrimary);
+      }
+    }
+
+    &.nft {
+      img {
+        border-radius: 6px;
+        height: 35px;
+        width: 36px;
+      }
+    }
+
+    &.token {
+      img {
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+
+  .separator {
+    border-bottom: 1px solid var(--extGray3);
+    margin: 16px 0;
+    position: relative;
+
+    .icon {
+      align-items: center;
+      background: var(--extWhite);
+      border: 1px solid var(--extGray3);
+      border-radius: 8px;
+      display: flex;
+      height: 24px;
+      justify-content: center;
+      left: 50%;
+      position: absolute;
+      top: -12px;
+      transform: translate(-50%);
+      width: 24px;
+
+      img {
+        height: 16px;
+        min-width: 16px;
+        width: 16px;
+      }
+    }
+  }
+}

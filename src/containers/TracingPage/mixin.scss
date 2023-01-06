@@ -1,0 +1,11 @@
+@mixin cursorDefault {
+  cursor: url('/assets/images/tracing/cursor-default.svg') 4 4, auto;
+}
+
+@mixin cursorPointer {
+  cursor: url('/assets/images/tracing/cursor-pointer.svg') 4 4, auto;
+}
+
+@mixin cursorGrabbing {
+  cursor: url('/assets/images/tracing/cursor-grabbing.svg') 4 4, auto;
+}

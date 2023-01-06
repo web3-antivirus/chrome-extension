@@ -1,35 +1,44 @@
 import { FC } from 'react';
-
-import Button from 'components/Button';
+import cn from 'classnames';
+import ButtonNew from 'components/ButtonNew';
+import { BUTTON_TYPES } from 'constants/button.constants';
 
 import styles from './styles.module.scss';
 
 interface Props {
   handleDecline: () => void
   handleProceed: () => void
-  withText?: boolean
+  text?: string
+  className?: string
 }
 
-const FooterButtons: FC<Props> = ({ withText, handleDecline, handleProceed }) => (
-  <div className={styles.wrap}>
-    {withText && <p className={styles.footerText}>What would you like to do?</p>}
+const FooterButtons: FC<Props> = ({
+  text, handleDecline, handleProceed, className,
+}) => (
+  <div className={cn(styles.wrap, className)}>
+    {text && <h1 className={styles.footerText}>{text}</h1>}
     <div className={styles.buttons}>
-      <Button onClick={handleDecline} styleType="green" className={styles.button}>
-        Decline
-      </Button>
-      <Button
-        onClick={handleProceed}
-        styleType="gray"
+      <ButtonNew
+        onClick={handleDecline}
+        styleType={BUTTON_TYPES.SECONDARY}
         className={styles.button}
       >
-        Proceed
-      </Button>
+        Block
+      </ButtonNew>
+      <ButtonNew
+        onClick={handleProceed}
+        styleType={BUTTON_TYPES.PRIMARY}
+        className={styles.button}
+      >
+        Continue
+      </ButtonNew>
     </div>
   </div>
 );
 
 FooterButtons.defaultProps = {
-  withText: true,
+  text: '',
+  className: '',
 };
 
 export default FooterButtons;
