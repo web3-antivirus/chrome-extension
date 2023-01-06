@@ -7,7 +7,6 @@ import { DECLINE_TRANSACTION_WEB3_GUARD, METAMASK_SEND_TRANSACTION } from 'const
 import { EXTENSION_ACTION_API } from 'constants/check-nft.constants';
 import { useCurrentUrl } from 'hooks/use-current-url';
 import { useAnalyzedContracts } from 'hooks/use-analyzed-contracts';
-
 import styles from './styles.module.scss';
 
 type Props = {

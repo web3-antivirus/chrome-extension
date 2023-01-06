@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
 import { Popup as SPopup, StrictPopupProps } from 'semantic-ui-react';
 import cn from 'classnames';
+import 'semantic-ui-css/components/popup.min.css';
 
 import styles from './styles.module.scss';
 

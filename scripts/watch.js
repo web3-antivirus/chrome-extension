@@ -28,7 +28,8 @@ config.output.path = paths.appBuild;
 paths.publicUrl = paths.appBuild + "/";
 
 // Start Webpack in watch mode.
-webpack(config).watch({}, function(err) {
+const compiler = webpack(config);
+const watcher = compiler.watch({}, function(err) {
   if (err) {
     console.error(err, "error in scripts/watcher.js");
   } else {

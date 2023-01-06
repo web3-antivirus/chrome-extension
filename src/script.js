@@ -1,5 +1,5 @@
-// Note: this code is embedded into the page through the script tag.
-// This is necessary since only inline code through the script tag can access the window.ethereum of this page
+// Note: this code is embedded into the page through the script tag. This is necessary, since only inline code
+// through the script tag can access the window.ethereum of this page
 import {
   METAMASK_PAUSE_TRANSACTION,
   METAMASK_SEND_TRANSACTION,
@@ -12,14 +12,14 @@ import {
 import { METAMASK_METHODS } from "./constants/metamask.constants.ts";
 
 const ETH_CHAIN = '0x1';
-let chainId = null;
+let chainId = ETH_CHAIN;
 
 if (window.ethereum && window.ethereum.request) {
   const metamaskRequest = window.ethereum.request;
   let isTurnOnWeb3Guard = true;
 
-  // Note: the customRequest function listens to all events called for the MetaMask. 
-  // And when calling the transaction method, customRequest gives information about the contract to content.js (inject) so that content.js can analyze the contract and tell its degree of risk
+  // Note: the customRequest function listens for all events called for the metamask. And when calling the transaction method, customRequest
+  // gives information about the contract to content.js (inject) so that content.js can analyze the contract and tell its degree of risk
   const customRequest = ({ ...ethereumRequestArguments }) => {
     return new Promise((resolve, reject) => {
       if (
@@ -129,6 +129,7 @@ if (window.postMessage) {
   // gives information about the contract to content.js (inject) so that content.js can analyze the contract and tell its degree of risk
   const customRequest = (data, ...rest) => {
       if (
+        typeof data === 'object' &&
         data.target === "metamask-contentscript" &&
         data.data &&
         data.data.data &&
@@ -170,10 +171,12 @@ if (window.postMessage) {
             "*"
           );
         } else {
-          return postRequest(data, ...rest);
+          postRequest(data, ...rest);
+          return;
         }
       } else {
-        return postRequest(data, ...rest);
+          postRequest(data, ...rest);
+          return;
       }
 
       const messageListener = (event) => {
@@ -181,6 +184,8 @@ if (window.postMessage) {
           return;
         }
 
+        // Note: if the user decides that the contract does not seem dangerous for him, then he clicks on the 'Proceed' button, and we execute
+        // the transactions paused a little higher
         if (event.data.type && event.data.type === METAMASK_SEND_TRANSACTION) {
           const transactionArguments = JSON.parse(event.data.jsonData);
           window.removeEventListener("message", messageListener, false);
@@ -194,6 +199,8 @@ if (window.postMessage) {
           });
         }
 
+        // Note: if the user decides that the contract seems dangerous, then he clicks on the "Decline" button, or cancel check web3 guard
+        // the transaction will be canceled
         if (
           event.data.type &&
           [DECLINE_TRANSACTION_WEB3_GUARD, CANCEL_CHECK_WEB3_GUARD].includes(
@@ -204,6 +211,8 @@ if (window.postMessage) {
           return;
         }
 
+        // Note: Here I am tracking the change of the “Web3 Guard” switch (https://monosnap.com/file/0U29z9GZHeqEES20FN8CSHP2kISLKv).
+        // If it is enabled, then all transactions are stopped and scanned before being sent. If it is disabled, then transactions are not scanned
         if (
           event.data.type &&
           event.data.type === CHANGE_IS_TURN_ON_WEB3_GUARD

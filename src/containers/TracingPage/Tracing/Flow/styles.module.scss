@@ -1,0 +1,65 @@
+@import '../../mixin';
+
+.flow {
+  flex-grow: 1;
+  font-size: 12px;
+
+  :global {
+    svg:not(:root) {
+      overflow: visible;
+    }
+    /* stylelint-disable selector-class-pattern, declaration-no-important */
+    .react-flow__panel {
+      display: none !important;
+    }
+
+    .react-flow__pane {
+      @include cursorDefault();
+
+      &.dragging {
+        @include cursorGrabbing();
+      }
+    }
+  }
+
+
+  .edge {
+    path {
+      stroke: #515359;
+    }
+  }
+
+  .node {
+    @include cursorDefault();
+    pointer-events: auto !important;
+    z-index: unset !important;
+
+    &:hover {
+      z-index: 1 !important;
+    }
+  }
+
+  .fixedContainersTop,
+  .fixedContainersBottom {
+    position: fixed;
+    right: 16px;
+    z-index: var(--max-z-index-value) !important;
+  }
+
+  .fixedContainersTop {
+    top: 16px;
+  }
+
+  .fixedContainersBottom {
+    bottom: 16px;
+  }
+
+  &.isModalOpen {
+    max-width: calc(100% - 481px);
+
+    .fixedContainersTop,
+    .fixedContainersBottom {
+      right: calc(16px + 481px);
+    }
+  }
+}

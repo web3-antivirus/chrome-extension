@@ -4,12 +4,17 @@ export const ALERT_ERRORS = {
 
 export const ALERT_TEXTS = {
   [ALERT_ERRORS.ETH_SIGN]: {
-    title: 'Suspicious activity',
+    title: 'Please make sure this is not scam!',
     description: (
-      <span>
-        We detected <b>eth_sign</b> code that can let third parties get control
+      <>
+        We detected <span><b>eth_sign</b></span> code that can let third parties get control
         over your assets. We recommend you to discontinue signing.
-      </span>
+      </>
     ),
   },
+};
+
+export const ALERT_TITLE = {
+  SUSPICIOUS_ACTIVITY: 'Suspicious activity',
+  MALICIOUS_EXTENSION: 'Potentially malicious extension',
 };

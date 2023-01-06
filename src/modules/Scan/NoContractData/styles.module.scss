@@ -1,56 +1,29 @@
-.wrap {
-  padding: 16px 24px 24px;
-  
-  .contractTitle {
-    align-items: center;
-    color: var(--ext19);
-    display: flex;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 16px;
-    margin-bottom: 4px;
-  }
-  
-  .address {
-    align-items: center;
-    color: var(--ext18);
-    display: flex;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 16px;
-  }
-  
-  .copyBtn {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin-left: 4px;
-  }
+@import '../../../assets/scss/helpers/mixins';
+@import '../../../assets/scss/helpers/typography';
 
-  .contract {
-    border-bottom: 0.5px solid var(--ext27);
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-  }
+.wrap {
+  background: var(--ext1);
+  padding: 24px 16px;
 
   .message {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 32px 0 24px;
+    padding: 0;
+
+    .title {
+      @include h1();
+      @include h1(var(--ext12));
+      margin-bottom: 8px;
+    }
 
     .text {
-      color: var(--ext12);
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 20px;
-      margin-bottom: 16px;
-      padding: 0 24px;
-      text-align: center;
+      @include r1(var(--ext31));
+      margin-bottom: 24px;
+      padding: 0;
+      text-align: left;
     }
   }
 
   .button {
-    padding: 10px 43px;
+    padding: 0;
+    width: 100%;
   }
 }

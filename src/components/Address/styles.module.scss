@@ -1,0 +1,39 @@
+@import 'assets/scss/helpers/typography';
+@import 'assets/scss/helpers/mixins';
+
+.wrap {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  display: flex;
+  outline: 1px solid rgba(0, 0, 0, 0.24);
+  padding: 4px 8px;
+  width: fit-content;
+
+  .address {
+    @include link;
+  }
+
+  .ethIcon,
+  .address {
+    margin-right: 4px;
+  }
+
+  .copyBtn {
+    height: 14px;
+    margin-left: 4px;
+
+    &:hover {
+      .copyIcon {
+        path {
+          stroke: var(--extBlack);
+        }
+      }
+    }
+  }
+
+  .verifiedIcon {
+    height: 14px;
+    width: 14px;
+  }
+}

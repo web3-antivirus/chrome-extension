@@ -1,0 +1,84 @@
+@import '../../../../../assets/scss/helpers/mixins';
+@import '../../../mixin';
+
+.tracingBlock {
+  background: var(--extBlack);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  min-height: 90px;
+  padding: 12px 0;
+  position: relative;
+  width: 220px;
+
+  .link {
+    @include cursorPointer();
+    color: var(--extPrimary);
+    margin-left: 4px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .tracingInformation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+
+    > p {
+      color: var(--extGray5);
+      display: flex;
+      font-size: 16px;
+      justify-content: center;
+      line-height: 22px;
+      margin-right: 4px;
+
+      &:not(:last-child) {
+        margin-bottom: 4px;
+      }
+
+      .icon {
+        margin-right: 4px;
+      }
+
+      > span {
+        margin-right: 4px;
+      }
+    }
+
+
+    .address {
+      align-items: center;
+      display: flex;
+
+      .alertIcon {
+        height: 12px;
+        margin-left: 4px;
+        width: 12px;
+      }
+    }
+  }
+
+  .bold {
+    color: var(--extWhite);
+    font-weight: 700;
+  }
+}
+
+.handle {
+  background-color: unset;
+  border: unset;
+
+  &::before {
+    background-image: url('/assets/images/tracing/arrow.svg');
+    content: '';
+    height: 16px;
+    left: -1.5px;
+    position: absolute;
+    top: -12px;
+    width: 9px;
+    z-index: 2;
+  }
+}

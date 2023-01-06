@@ -1,0 +1,32 @@
+.wrap {
+  .header {
+    align-items: center;
+    display: flex;
+
+    .icon {
+      margin-left: 4px;
+    }
+
+    .verifiedIcon {
+      height: 20px;
+      width: 20px;
+    }
+
+    .risksIcon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  .description {
+    color: var(--extGray5);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-top: 12px;
+  }
+
+  .address {
+    margin-top: 12px;
+  }
+}

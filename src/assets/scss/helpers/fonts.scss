@@ -16,6 +16,13 @@
   font-display: swap;
   font-family: 'Averta';
   font-style: normal;
+  font-weight: 700;
+  src: url('/assets/fonts/Averta-Cyrillic-Bold.otf') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Averta';
+  font-style: normal;
   font-weight: 800;
   src: url('/assets/fonts/Averta-Cyrillic-ExtraBold.woff2') format('woff2');
 }

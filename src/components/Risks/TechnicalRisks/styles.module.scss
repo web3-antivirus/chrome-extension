@@ -1,0 +1,30 @@
+@import '../../../assets/scss/helpers/typography';
+
+.wrap {
+  .risk {
+    align-items: center;
+    display: flex;
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+
+    .icon {
+      background-color: var(--extPrimary);
+      border-radius: 50%;
+      height: 8px;
+      margin-bottom: 0;
+      margin-right: 6px;
+      width: 8px;
+
+      &.hasRisk {
+        background-color: var(--extError);
+      }
+    }
+
+    .name {
+      @include r2;
+      margin-right: 3px;
+    }
+  }
+}

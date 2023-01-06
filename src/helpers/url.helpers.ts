@@ -1,12 +1,13 @@
-import qs from 'qs';
 import { ETH_EXPLORER_URL } from 'constants/blockchains.constants';
+import { CHECK_NFT_PATH } from 'constants/check-nft.constants';
+import qs from 'qs';
 
 export const getSiteName = (url?: string): string => {
   const domain = url && (new URL(url));
   return domain ? domain.origin : '';
 };
 
-export const getDomainNameWithoutProtocol = (url?: string): string => {
+export const getDomainNameWithoutProtocol = (url?: string, withTopLevelDomain?: boolean): string => {
   if (!url) {
     return '';
   }
@@ -15,10 +16,10 @@ export const getDomainNameWithoutProtocol = (url?: string): string => {
   const hostName = domain.hostname;
   const hostNameWithoutProtocol = hostName.replace('www.', '').split('.')[0];
 
-  return hostNameWithoutProtocol;
+  return withTopLevelDomain ? hostName : hostNameWithoutProtocol;
 };
 
-export const getUrlWithoutTrailingSlash = (url: string): string => {
+export const getUrlWithoutTrailingSlash = (url: string) => {
   const lastSymbol = url.slice(-1);
   if (lastSymbol === '/') {
     return url.slice(0, -1);
@@ -45,3 +46,6 @@ export const prepareUrl = (path: string, params: { [key: string]: string | numbe
 };
 
 export const getEtherscanAddressUrl = (address: string): string => `${ETH_EXPLORER_URL}/address/${address}`;
+
+export const getTokenUrl = (address: string, id: string): string => `${CHECK_NFT_PATH}token/${address}/${id}`;
+export const getCollectionUrl = (address: string, id: string): string => `${CHECK_NFT_PATH}search/?collection=${id}&query=${address}`;

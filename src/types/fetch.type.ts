@@ -117,8 +117,47 @@ export type Contract = {
   analysis: AnalysisDescriptor,
 }
 
+export interface ABIItem {
+  internalType?: string;
+  type?: string;
+  name: string;
+  value?: ABIItem | ABIItem[] | string | boolean | null;
+}
+
+export type CallMethodDescriptor = {
+  name?: string;
+  nameHex?: string;
+  gas: string; // HEX
+  address: string;
+  value: string; // HEX
+  /**
+   * If `true`, this CALL method can change depth.
+   */
+  moveToNewLevel?: boolean;
+  params?: ABIItem;
+}
+
+export interface EventDescriptor {
+  name: string;
+  nameHex: string;
+  params?: ABIItem | ABIItem[];
+}
+
+export interface Trace {
+  id: string;
+  parent: string;
+  method: CallMethodDescriptor;
+  calls: CallMethodDescriptor[];
+  events: EventDescriptor[];
+}
+
+export interface TraceWithRisk extends Trace {
+  risk: number;
+}
+
 export type RisksProps = {
   contract: Contract,
   collection: Collection,
   statistic: Statistic,
+  trace: Trace[],
 }

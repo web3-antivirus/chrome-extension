@@ -4,7 +4,6 @@ import cn from 'classnames';
 import alertIcon from 'assets/images/icons/alert.svg';
 import checkIcon from 'assets/images/icons/check-circle.svg';
 import { getImageUrl } from 'helpers/image.helpers';
-
 import styles from './styles.module.scss';
 
 type Props = {

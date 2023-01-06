@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-
 import { getValueToChromeStorage, setValueToChromeStorage, subscribeChangesChromeStorage } from 'helpers/chrome-storage.helpers';
 import { STORAGE_IS_TURN_ON_WEB3_GUARD } from 'constants/chrome-storage.constants';
 
 type TValue = {
   isTurnOn: boolean | undefined
 }
-
 type TReturnUseTurnOnWeb3Guard = {
   isTurnOnWeb3Guard: TValue['isTurnOn'],
   toggleValue: (value: boolean) => void,

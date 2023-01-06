@@ -4,7 +4,6 @@ import {
 } from 'react';
 
 import Popup from 'components/Popup';
-
 import RiskBlock from '../RiskBlock';
 import styles from './styles.module.scss';
 

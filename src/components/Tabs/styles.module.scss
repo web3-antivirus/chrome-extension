@@ -1,0 +1,44 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  background-color: var(--extWhite);
+
+  .header {
+    border-bottom: 1px solid var(--extGray3);
+    display: flex;
+    padding: 0 16px;
+
+    .tab {
+      @include h4;
+      align-items: center;
+      border-bottom: 2px solid var(--extWhite);
+      color: var(--extGray4);
+      display: flex;
+      padding: 16px 12px;
+      transition: 0.3s;
+
+      &:hover {
+        color: var(--extBlack);
+      }
+
+      &.active {
+        border-color: var(--extBlack);
+      }
+
+      .count {
+        color: var(--extGray4);
+        margin-left: 2px;
+      }
+
+      .icon {
+        height: 12px;
+        margin-left: 2px;
+        width: 12px;
+      }
+    }
+  }
+
+  .body {
+    padding: 16px 16px 24px;
+  }
+}

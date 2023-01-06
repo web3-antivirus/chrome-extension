@@ -1,42 +1,24 @@
-import { useMemo, FC } from 'react';
-import { createPortal } from 'react-dom';
-import cn from 'classnames';
-
 import Header from 'layouts/Header';
-import { Screens, useScreenContext } from 'components/ScreenProvider';
-import Settings from 'modules/Settings';
-import Feedback from 'modules/Feedback';
-
+import { useMemo, FC } from 'react';
+import cn from 'classnames';
+import { createPortal } from 'react-dom';
+import { useScreenContext } from 'components/ScreenProvider';
 import styles from './styles.module.scss';
 
 interface Props {
-  children: React.ReactNode
-  onClose?: () => void
+  children: React.ReactNode,
+  headerChild?: React.ReactNode,
 }
 
-const Layout: FC<Props> = ({ children, onClose }) => {
+const Layout: FC<Props> = ({ children, headerChild }) => {
   const { screen, handleSetScreen } = useScreenContext();
 
-  const renderScreen = useMemo(() => {
-    if (screen === Screens.settings) {
-      return <Settings toggleSettings={() => handleSetScreen(Screens.settings)} />;
-    }
-
-    if (screen === Screens.feedback) {
-      return <Feedback toggleFeedback={() => handleSetScreen(Screens.feedback)} />;
-    }
-
-    return children;
-  }, [screen, handleSetScreen]);
+  const renderScreen = useMemo(() => children, [screen, handleSetScreen]);
 
   return createPortal(
     <div className={styles.overlay}>
-      <div className={cn(styles.wrapper, 'extension-nft-check')}>
-        <Header
-          onClose={onClose}
-          toggleSettings={() => handleSetScreen(Screens.settings)}
-          toggleFeedback={() => handleSetScreen(Screens.feedback)}
-        />
+      <div className={cn(styles.wrapper, 'light-ext', 'extension-nft-check')}>
+        {headerChild || <Header />}
         {renderScreen}
       </div>
     </div>,
@@ -45,7 +27,7 @@ const Layout: FC<Props> = ({ children, onClose }) => {
 };
 
 Layout.defaultProps = {
-  onClose: undefined,
+  headerChild: undefined,
 };
 
 export default Layout;

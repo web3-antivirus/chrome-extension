@@ -33,6 +33,18 @@
     margin-left: 4px;
   }
 
+  .transactionBtn {
+    align-items: center;
+    color: var(--ext2);
+    display: flex;
+    font-size: 13px;
+    line-height: 16px;
+
+    .arrow {
+      margin-left: 4px;
+    }
+  }
+
   .contract,
   .contractName,
   .collection,

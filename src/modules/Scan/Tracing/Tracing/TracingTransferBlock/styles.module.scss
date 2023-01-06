@@ -1,0 +1,54 @@
+@import '../../../../../assets/scss/helpers/mixins';
+
+.tracingBlock {
+  background: var(--extBlack);
+  border-radius: 16px;
+  display: block;
+  padding: 6px 8px;
+  position: relative;
+  width: 173px;
+
+  .link {
+    color: var(--ext2);
+    margin-left: 4px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .tracingInformation {
+    text-align: center;
+
+    > p {
+      color: var(--ext1);
+      display: flex;
+      font-size: 13px;
+      line-height: 16px;
+      margin-right: 4px;
+
+      &:not(:last-child) {
+        margin-bottom: 4px;
+      }
+
+      > span {
+        margin-right: 4px;
+      }
+    }
+
+    .address {
+      align-items: center;
+      display: flex;
+
+      .alertIcon {
+        height: 14px;
+        margin-left: 4px;
+        width: 14px;
+      }
+    }
+  }
+
+  .bold {
+    font-weight: 700 !important;
+  }
+}

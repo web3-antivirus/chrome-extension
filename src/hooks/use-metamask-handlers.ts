@@ -5,8 +5,9 @@ import {
 } from 'react';
 
 import {
-  METAMASK_ETH_SIGN, METAMASK_PAUSE_TRANSACTION, METAMASK_SEND_TRANSACTION,
+  METAMASK_ETH_SIGN, METAMASK_PAUSE_SIGN, METAMASK_PAUSE_TRANSACTION, METAMASK_SEND_TRANSACTION,
 } from 'constants/chrome-send-message.constants';
+import { checkSignDataForOrder, OrderNftsType } from 'helpers/metamask.helpers';
 import { useEventListener } from 'hooks/common.hooks';
 import { ALERT_ERRORS } from 'constants/alert.constants';
 import { CustomEvent } from 'interfaces/common.interfaces';
@@ -19,6 +20,7 @@ interface Props {
   setTransactionJSONData: Dispatch<SetStateAction<string>>
   setAlert: Dispatch<SetStateAction<string>>
   transactionJSONData: string;
+  setSaleOrders: Dispatch<SetStateAction<OrderNftsType | null>>
   setIsShowAnalyzeBlock: Dispatch<SetStateAction<boolean>>
 }
 
@@ -26,6 +28,7 @@ export const useMetamaskHandlers = (
   {
     isTurnOnWeb3Guard, userToken,
     setTransactionJSONData, setAlert,
+    transactionJSONData, setSaleOrders,
     setIsShowAnalyzeBlock,
   }: Props,
 ): void => {
@@ -42,6 +45,23 @@ export const useMetamaskHandlers = (
       }
     },
     [setTransactionJSONData, isTurnOnWeb3Guard, userToken, url, analyzedContracts, setIsShowAnalyzeBlock],
+  );
+
+  const handlePauseSign = useCallback(
+    (event: CustomEvent) => {
+      if (isTurnOnWeb3Guard && userToken) {
+        const saleOrdersData = checkSignDataForOrder(JSON.parse(event.data.jsonData));
+        if (saleOrdersData) {
+          setSaleOrders(saleOrdersData);
+          setTransactionJSONData(event.data.jsonData);
+        } else {
+          window.postMessage({ type: METAMASK_SEND_TRANSACTION, fromExtension: true, jsonData: event.data.jsonData }, '*');
+        }
+      } else {
+        window.postMessage({ type: METAMASK_SEND_TRANSACTION, fromExtension: true, jsonData: transactionJSONData }, '*');
+      }
+    },
+    [setSaleOrders, setTransactionJSONData, isTurnOnWeb3Guard, userToken],
   );
 
   const handleMetamaskEthSign = useCallback(
@@ -61,11 +81,14 @@ export const useMetamaskHandlers = (
       if (event.data.type && (event.data.type === METAMASK_PAUSE_TRANSACTION)) {
         handleMetamaskPause(event);
       }
+      if (event.data.type && (event.data.type === METAMASK_PAUSE_SIGN)) {
+        handlePauseSign(event);
+      }
       if (event.data.type && (event.data.type === METAMASK_ETH_SIGN)) {
         handleMetamaskEthSign(event);
       }
     },
-    [handleMetamaskPause, handleMetamaskEthSign],
+    [handleMetamaskPause, handlePauseSign, handleMetamaskEthSign],
   );
 
   useEventListener({ type: 'message', listener: messageHandler as unknown as EventListener });

@@ -1,10 +1,8 @@
 import { FC, memo } from 'react';
 import cn from 'classnames';
-
 import logo from 'assets/images/icons/label-logo.svg';
 import { getImageUrl } from 'helpers/image.helpers';
 import { THEME } from 'constants/theme.constants';
-
 import styles from './styles.module.scss';
 
 type Props = {

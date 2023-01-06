@@ -13,35 +13,37 @@ import Button from 'components/Button';
 import { RisksProps } from 'types/fetch.type';
 import { useUserId } from 'hooks/use-user-id';
 import { roundNumber } from 'helpers/big-number.helpers';
-
 import RiskBlocks from './RiskBlocks';
 import ContractInfo from './ContractInfo';
 import styles from './styles.module.scss';
 import SuspiciousActivity from './SuspiciousActivity';
 import Suspicious from './Suspicious';
+import rightArrowIcon from '../../../assets/images/icons/arrow-right.svg';
 
 type Props = RisksProps & {
   address: string;
   handleProceed: (val: boolean, userId: string) => void;
   handleDecline: (userId: string) => void;
+  setScanScreen: (scanScreen: number) => void;
 };
 
 const ContractRisks: FC<Props> = ({
   address,
   contract,
   collection, statistic,
-  handleProceed, handleDecline,
+  handleProceed, handleDecline, setScanScreen,
 }) => {
+  const userId = useUserId();
   const [isOpenCopyPopup, setIsOpenCopyPopup] = useState(false);
   const [isOpenSuspicious, setIsOpenSuspicious] = useState(false);
-  const userId = useUserId();
-
   const copyAddress = async () => {
     await navigator.clipboard.writeText(address);
     setIsOpenCopyPopup(true);
     setTimeout(() => setIsOpenCopyPopup(false), 1000);
   };
-
+  const handleOpenTracingScreen = () => {
+    setScanScreen(3);
+  };
   return (
     <div className={styles.wrapper}>
       {isOpenSuspicious ? <SuspiciousActivity data={contract?.analysis} handleClose={() => setIsOpenSuspicious(false)} />
@@ -66,6 +68,9 @@ const ContractRisks: FC<Props> = ({
                   )}
                 />
               </p>
+              <button onClick={handleOpenTracingScreen} className={styles.transactionBtn}>
+                Transaction simulation <img src={getImageUrl(rightArrowIcon)} alt="" className={styles.arrow} />
+              </button>
             </div>
             {collection && (
               <ContractInfo

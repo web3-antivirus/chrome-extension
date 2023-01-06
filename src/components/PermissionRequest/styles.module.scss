@@ -1,0 +1,57 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  .sectionTitle {
+    @include r1-b();
+    align-items: center;
+    display: flex;
+    margin-bottom: 12px;
+
+    span {
+      margin-right: 4px;
+    }
+  }
+
+  .approve {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+
+  .header {
+    align-items: center;
+    display: flex;
+
+    .alertIcon {
+      height: 14px;
+      margin-right: 4px;
+      width: 14px;
+    }
+
+    .title {
+      @include r2-b();
+      margin-right: 4px;
+
+      &.hasRisk {
+        color: var(--extError);
+      }
+    }
+  }
+
+  .row {
+    @include r2;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+
+    .field {
+      color: var(--extGray5);
+    }
+
+    .address {
+      outline: 0;
+      padding: 0;
+    }
+  }
+}

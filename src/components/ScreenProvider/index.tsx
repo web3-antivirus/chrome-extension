@@ -1,15 +1,15 @@
+import { STORAGE_TOKEN } from 'constants/chrome-storage.constants';
+import { getValueToChromeStorage } from 'helpers/chrome-storage.helpers';
 import {
   createContext, useContext,
   useState, FC, PropsWithChildren, useCallback, useEffect,
 } from 'react';
 
-import { STORAGE_TOKEN } from 'constants/chrome-storage.constants';
-import { getValueToChromeStorage } from 'helpers/chrome-storage.helpers';
-
 export enum Screens {
   default = 'default',
   settings = 'settings',
   feedback = 'feedback',
+  enter = 'enter',
 }
 
 export type Screen = Screens;
@@ -24,7 +24,7 @@ export const ScreenContext = createContext<ScreenContent>({
   handleSetScreen: () => { /**/ },
 });
 
-export const useScreenContext = (): ScreenContent => useContext(ScreenContext);
+export const useScreenContext = () => useContext(ScreenContext);
 
 export const ScreenProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
   const [screen, setScreen] = useState<Screen>(Screens.default);

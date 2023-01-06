@@ -12,7 +12,6 @@ import { IPINFO_URL } from 'constants/api.constants';
 import { EXTENSION_ACTION_API } from 'constants/check-nft.constants';
 import { useUserId } from 'hooks/use-user-id';
 import { useCurrentUrl } from 'hooks/use-current-url';
-
 import styles from './styles.module.scss';
 
 type Props = {
@@ -20,20 +19,19 @@ type Props = {
 };
 
 const Feedback: FC<Props> = ({ toggleFeedback }) => {
+  const { isPopUp } = getCodeExecutionEnvironment();
+  const userId = useUserId();
+  const url = useCurrentUrl();
   const [text, setText] = useState('');
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isReportSent, setIsReportSent] = useState(false);
 
-  const { isPopUp } = getCodeExecutionEnvironment();
-  const userId = useUserId();
-  const url = useCurrentUrl();
-
   useEffect(() => {
     if (hasError && text.length) {
       setHasError(false);
     }
-  }, [text, hasError]);
+  }, [text]);
 
   const handleSubmit = async () => {
     setHasError(!text.length);
@@ -71,7 +69,7 @@ const Feedback: FC<Props> = ({ toggleFeedback }) => {
     }
   };
 
-  const isLongText = useMemo(() => text.length > MAX_FEEDBACK_TEXTAREA_SYMBOLS, [text]);
+  const isLongText = useMemo(() => text.length > MAX_FEEDBACK_TEXTAREA_SYMBOLS, [text, MAX_FEEDBACK_TEXTAREA_SYMBOLS]);
 
   return (
     <div className={cn(styles.wrapper, { [styles.scroll]: isPopUp })}>

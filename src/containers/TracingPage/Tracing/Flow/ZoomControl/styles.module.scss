@@ -1,0 +1,57 @@
+@import '../../../mixin';
+
+.zoomContainer {
+  background: #F5F5F5;
+  border-radius: 8px;
+  display: flex;
+  padding: 4px;
+
+  .button,
+  .questionButton {
+    @include cursorPointer();
+    align-items: center;
+    border: 0;
+    border-radius: 6px;
+    display: flex;
+    height: 24px;
+    justify-content: center;
+    padding: 6px;
+    transition: 0.3s;
+    width: 24px;
+
+    svg {
+      transition: 0.3s;
+    }
+
+    &:hover {
+      background: #00D180;
+
+      svg {
+        stroke: #FFF;
+      }
+    }
+  }
+
+  .questionButton {
+    background: #0A0A0A;
+    margin-right: 10px;
+
+    &.isOpenPrompt {
+      background: #00D180;
+    }
+  }
+
+  .zoomValue {
+    color: #1B1E26;
+    font-size: 16px;
+    line-height: 22px;
+    margin: 0 8px;
+    width: 42px;
+  }
+
+  .prompt {
+    bottom: 0;
+    position: absolute;
+    right: calc(100% + 16px);
+  }
+}

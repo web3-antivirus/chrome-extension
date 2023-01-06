@@ -49,7 +49,8 @@ module.exports = {
       // in the production environment, we will split the code into two different files. This is required by the API Chrome extension
       // https://i.imgur.com/PxsDZWq.png
       webpackConfig.entry = (isEnvProduction || IS_WATCH)
-        ? { main: paths.appIndexJs, inject: paths.inject, phishing: paths.appSrc + '/phishing.tsx' }
+        ? { main: paths.appIndexJs, inject: paths.inject, phishing: paths.appSrc + '/phishing.tsx',
+            tracing: paths.appSrc + '/tracing.tsx' }
         : [paths.appIndexJs, paths.inject];
 
       // getting rid of hash in names in files after build https://i.imgur.com/sZEX7o2.png
@@ -77,6 +78,14 @@ module.exports = {
         chunks: ['phishing'],
         excludeChunks: [INJECT_FILE_NAME],
         filename: './phishing.html' //relative to root of the application
+      }));
+
+      webpackConfig.plugins.push(new HtmlWebpackPlugin({
+        template: './public/tracing.html',
+        inject: true,
+        chunks: ['tracing'],
+        excludeChunks: [INJECT_FILE_NAME],
+        filename: './tracing.html' //relative to root of the application
       }));
 
       return webpackConfig

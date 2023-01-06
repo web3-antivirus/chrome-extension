@@ -2,10 +2,14 @@
 
 .wrapper {
   align-items: center;
-  background: var(--ext8);
+  background: var(--extPrimary);
   display: flex;
   justify-content: space-between;
-  padding: 10px 24px;
+  padding: 12px 16px;
+
+  &.disabled {
+    background-color: var(--extError);
+  }
 }
 
 .icons {
@@ -13,10 +17,6 @@
   display: flex;
   gap: 14px;
   justify-content: space-between;
-}
-
-.logo {
-  margin-bottom: 8px;
 }
 
 .settingsIcon {

@@ -1,0 +1,56 @@
+@import '../../../../assets/scss/helpers/mixins';
+@import '../../../../assets/scss/helpers/typography';
+
+.wrap {
+  .loader {
+    @include d-flex();
+  }
+
+  .title {
+    @include h2(var(--ext19));
+    margin-bottom: 0;
+    padding: 24px 16px;
+  }
+
+  .count {
+    color: var(--extPrimary);
+    margin: 0;
+  }
+
+  .tokens {
+    @include scroll();
+    border-bottom: 0 solid;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 0;
+    margin-right: 8px;
+    max-height: 368px;
+    overflow-y: auto;
+    padding: 0 8px 16px 16px;
+
+    .img {
+      margin-bottom: 4px;
+    }
+
+    .name {
+      @include r2();
+      @include ellipsis-text(1, 120px);
+    }
+  }
+
+  .price {
+    @include d-flex(center, space-between);
+    border: 0;
+    margin: 0;
+    padding: 16px 22px;
+
+    .text {
+      @include r1(var(--extGray4));
+    }
+
+    .value {
+      @include r1-b();
+    }
+  }
+}

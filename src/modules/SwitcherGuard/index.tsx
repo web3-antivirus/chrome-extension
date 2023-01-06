@@ -1,16 +1,26 @@
 import { FC } from 'react';
 import cn from 'classnames';
 import { Checkbox, CheckboxProps } from 'semantic-ui-react';
-import { useTurnOnWeb3Guard } from 'hooks/use-turn-on-web3-guard';
 import 'semantic-ui-css/components/checkbox.min.css';
 
+import { CHANGE_ICON_OFF, CHANGE_ICON_ON } from 'constants/chrome-send-message.constants';
 import styles from './styles.module.scss';
 
-const SwitcherGuard: FC<CheckboxProps> = ({ ...props }) => {
-  const { isTurnOnWeb3Guard, toggleValue } = useTurnOnWeb3Guard();
+type Props = CheckboxProps & {
+  isTurnOnWeb3Guard: boolean;
+  toggleValue: (value: boolean) => void;
+};
+
+const SwitcherGuard: FC<Props> = ({ isTurnOnWeb3Guard, toggleValue, ...props }) => {
 
   const handleChange = () => {
     toggleValue(Boolean(isTurnOnWeb3Guard));
+
+    if (isTurnOnWeb3Guard) {
+      chrome.runtime.sendMessage({ message: CHANGE_ICON_OFF });
+    } else {
+      chrome.runtime.sendMessage({ message: CHANGE_ICON_ON });
+    }
   };
 
   return (

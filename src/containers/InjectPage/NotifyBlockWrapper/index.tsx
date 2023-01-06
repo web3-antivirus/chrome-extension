@@ -1,11 +1,9 @@
 import { FC, useState } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames';
-
 import NotifyBlock from 'components/NotifyBlock';
-import checkIcon from 'assets/images/icons/check-circle.svg';
+import verifiedIcon from 'assets/images/icons/verified-redesign.svg';
 import { TIME_OF_SHOWING_VERIFY_BLOCK } from 'constants/web3-guard.constants';
-
 import styles from './styles.module.scss';
 
 type Props = {
@@ -30,12 +28,12 @@ const NotifyBlockWrapper: FC<Props> = ({
   const renderContent = () => (
     isShowBlock
       ? (
-        <div className={cn(styles.wrapper, 'extension-nft-check')}>
+        <div className={cn(styles.wrapper, 'light-ext', 'extension-nft-check')}>
           <NotifyBlock
-            src={icon || checkIcon}
+            src={icon || verifiedIcon}
             alt="check icon"
             title={title}
-            description={description || ''}
+            description={description}
             classNameIcon={styles.icon}
           />
         </div>

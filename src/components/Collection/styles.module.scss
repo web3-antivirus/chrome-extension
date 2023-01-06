@@ -1,0 +1,31 @@
+@import 'assets/scss/helpers/typography';
+
+.item {
+  align-items: center;
+  column-gap: 12px;
+  display: grid;
+  grid-template-areas: 'image collection';
+  grid-template-columns: 40px 1fr;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.collection {
+  @include h3;
+  grid-area: collection;
+}
+
+.image {
+  border-radius: 50%;
+  grid-area: image;
+  height: 40px;
+  object-fit: cover;
+  width: 40px;
+}
+
+.verifiedIcon {
+  height: 16px;
+  margin-left: 26px;
+  margin-top: -14px;
+  width: 16px;
+}

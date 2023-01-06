@@ -1,0 +1,85 @@
+@mixin title {
+  color: var(--extBlack);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.modal {
+  bottom: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 481px;
+  z-index: var(--max-z-index-value);
+}
+
+.wrapper {
+  background: var(--extGray1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  height: calc(100% - 32px);
+  margin: auto;
+  overflow: auto;
+  padding: 16px;
+  width: calc(100% - 32px);
+
+  .methodTitle {
+    @include title();
+  }
+
+  .section {
+    margin-top: 16px;
+
+    :global {
+      .variable-value {
+        > div {
+          color: #00B377 !important;
+        }
+      }
+
+      .node-ellipsis {
+        color: #00B377 !important;
+      }
+    }
+
+    .sectionTitle {
+      @include title();
+      margin-bottom: 8px;
+
+      span {
+        color: var(--extGray4);
+        margin-left: 4px;
+      }
+    }
+  }
+
+  .closeButton {
+    align-items: center;
+    border: 0;
+    border-radius: 6px;
+    display: flex;
+    height: 24px;
+    padding: 6px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    transition: 0.3s;
+    width: 24px;
+    z-index: 1;
+
+    svg {
+      transition: 0.3s;
+    }
+
+    &:hover {
+      background-color: #00D180;
+
+      svg {
+        stroke: #FFF;
+        transition: 0.3s;
+      }
+    }
+  }
+
+}

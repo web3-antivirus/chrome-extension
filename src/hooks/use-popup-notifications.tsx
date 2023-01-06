@@ -1,12 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
 import { ERROR_POPUP } from 'constants/background.constants';
+import { useState, useEffect, useCallback } from 'react';
 
-interface IPopupNotificationReturn {
-  popupNotification: string;
-  clearPopupNotification: () => void;
-}
-
-export const usePopupNotification = (): IPopupNotificationReturn => {
+export const usePopupNotification = () => {
   const [currentNotification, setCurrentNotification] = useState<string>('');
 
   useEffect(() => {

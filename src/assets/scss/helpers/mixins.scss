@@ -1,32 +1,45 @@
-@mixin ellipsis-text($rowsCount: 1) {
+@import './typography';
+
+@mixin ellipsis-text($rowsCount: 1, $maxWidth: 100%) {
   box-orient: vertical;
-  display: box;
   -webkit-line-clamp: $rowsCount;
+  max-width: $maxWidth;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   word-break: break-word;
 }
-  
-@mixin scroll() {
-  &::-webkit-scrollbar-track {
-    background-color: var(--ext8);
-  }
-    
+
+@mixin scroll($track: transparent, $thumb: var(--extGray3)) {
   &::-webkit-scrollbar {
-    border-radius: 40px;
-    width: 4px;
+    height: 8px;
+    width: 6px !important;
   }
-    
+
+  &::-webkit-scrollbar-track {
+    background: $track !important;
+    border-radius: 4px !important;
+  }
+
   &::-webkit-scrollbar-thumb {
-    background-color: #A2A2A2 !important;
-    width: 4px;
+    background: $thumb !important;
+    border-radius: 4px !important;
   }
 }
 
 @mixin link() {
-  color: #00D180;
+  @include r2;
+  color: var(--extBlack);
+  transition: 0.3s;
 
   &:hover {
+    color: var(--extGray6);
     text-decoration: underline;
   }
+}
+
+@mixin d-flex($ai: center, $jc: center) {
+  align-items: $ai;
+  display: flex;
+  justify-content: $jc;
 }

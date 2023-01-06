@@ -7,10 +7,13 @@ import { useCurrentTheme } from 'hooks/use-current-theme';
 import { getCheckByTheme } from 'helpers/theme.helpers';
 import { getImageUrl } from 'helpers/image.helpers';
 import { THEME } from 'constants/theme.constants';
-
 import styles from './styles.module.scss';
 
-const SwitcherTheme: FC = () => {
+type Props = {
+  //
+};
+
+const SwitcherTheme: FC<Props> = () => {
   const { theme, setTheme } = useCurrentTheme();
   const isLightTheme = useMemo(() => getCheckByTheme(theme), [theme]);
 

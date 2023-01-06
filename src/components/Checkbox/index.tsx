@@ -1,7 +1,6 @@
 import { FC, ReactNode } from 'react';
 import cn from 'classnames';
 import 'semantic-ui-css/components/checkbox.min.css';
-
 import styles from './styles.module.scss';
 
 interface Props {

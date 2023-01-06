@@ -1,5 +1,7 @@
 @import './helpers/theme';
 @import './helpers/fonts';
+@import './helpers/typography';
+@import './helpers/mixins';
 
 :root {
   --max-z-index-value: 2147483647;
@@ -9,17 +11,13 @@
   @import './vendors/normalize';
 
   &::-webkit-scrollbar {
+    @include scroll();
     width: 0;
   }
 
   body {
-    box-shadow: 0 100px 80px rgba(0, 0, 0, 0.0168519), 0 64.8148px 46.8519px rgba(0, 0, 0, 0.0274815), 0 38.5185px 25.4815px rgba(0, 0, 0, 0.035), 0 20px 13px rgba(0, 0, 0, 0.0425185), 0 8.14815px 6.51852px rgba(0, 0, 0, 0.0531481), 0 1.85185px 3.14815px rgba(0, 0, 0, 0.07);
     height: 100%;
     width: 434px;
-
-    &.light-ext {
-      outline: 1px solid rgba(0, 0, 0, 0.1);
-    }
   }
 
   // this line is needed for this font to be pulled up to https://superrare.com/
@@ -41,6 +39,8 @@
   button {
     background-color: transparent;
     border: 0;
+    border-radius: 0;
+    min-width: auto;
     outline: 0;
     padding: 0;
 
@@ -72,11 +72,30 @@
   input[type=number] {
     appearance: none;
   }
-}
 
-// adding indent for an icon on niftygateway.com https://i.imgur.com/CeJkLRM.png
-.MuiBox-root[role=button] {
-  margin-right: 8px;
+  h1 {
+    @include h1;
+    margin: 0;
+  }
+
+  h2 {
+    @include h2;
+    margin: 0;
+  }
+
+  h3 {
+    @include h3;
+    margin: 0;
+  }
+
+  h4 {
+    @include h4;
+    margin: 0;
+  }
+
+  svg {
+    vertical-align: initial;
+  }
 }
 
 .ui-alerts {

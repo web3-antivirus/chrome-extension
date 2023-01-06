@@ -1,13 +1,11 @@
-import { FC } from 'react';
-
 import { getImageUrl } from 'helpers/image.helpers';
+import { FC } from 'react';
 import extLink from 'assets/images/icons/ext-link.svg';
 import arrowLeftIcon from 'assets/images/icons/arrow-green-left.svg';
 import { AnalysisDescriptor } from 'types/fetch.type';
 import { getEtherscanAddressUrl } from 'helpers/url.helpers';
 import { getDateByTimeStamp } from 'helpers/common.helpers';
 import { useExtensionScroll } from 'hooks/common.hooks';
-
 import styles from './styles.module.scss';
 
 interface Props {

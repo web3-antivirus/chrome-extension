@@ -5,7 +5,7 @@ import {
 import {
   CHANGE_IS_TURN_ON_WEB3_GUARD, METAMASK_SEND_TRANSACTION,
 } from 'constants/chrome-send-message.constants';
-import { useTurnOnWeb3Guard } from 'hooks/use-turn-on-web3-guard';
+import { OrderNftsType } from 'helpers/metamask.helpers';
 import alertIcon from 'assets/images/icons/alert-circle.svg';
 import { useNotifications } from 'hooks/use-notifications';
 import { usePopupNotification } from 'hooks/use-popup-notifications';
@@ -14,27 +14,47 @@ import { useUserToken } from 'hooks/common.hooks';
 import { ALERT_TEXTS } from 'constants/alert.constants';
 
 import { useMetamaskHandlers } from 'hooks/use-metamask-handlers';
+import { useToggle } from 'context/toggle.context';
 import NotifyBlockWrapper from './NotifyBlockWrapper';
 import AnalyzeWrapper from './AnalyzeWrapper';
+import SaleOrdersWrapper from './SaleOrdersWrapper';
 import PopupNotification from './PopupNotification';
 import Alert from './Alert';
 
 const InjectPage: FC = () => {
   const userToken = useUserToken();
-  const { isTurnOnWeb3Guard } = useTurnOnWeb3Guard();
+  const { pause } = useToggle();
   const { notification, clearNotification } = useNotifications();
   const { clearPopupNotification, popupNotification } = usePopupNotification();
 
   const [isShowAnalyzeBlock, setIsShowAnalyzeBlock] = useState(false);
+  const [saleOrders, setSaleOrders] = useState<OrderNftsType | null>(null);
   const [transactionJSONData, setTransactionJSONData] = useState('');
   const [alert, setAlert] = useState('');
+  const isTurnOnWeb3Guard = !pause.isPaused || (!pause.pauseUntilTime || (new Date(pause.pauseUntilTime) < new Date()));
 
   useMetamaskHandlers({
-    setAlert, setTransactionJSONData, transactionJSONData, userToken, isTurnOnWeb3Guard, setIsShowAnalyzeBlock,
+    setAlert,
+    setSaleOrders,
+    setTransactionJSONData,
+    transactionJSONData,
+    userToken,
+    isTurnOnWeb3Guard,
+    setIsShowAnalyzeBlock,
   });
+
+  const closeSaleOrders = () => {
+    setTransactionJSONData('');
+    setSaleOrders(null);
+  };
 
   const proceedTransaction = () => {
     window.postMessage({ type: METAMASK_SEND_TRANSACTION, fromExtension: true, jsonData: transactionJSONData }, '*');
+  };
+
+  const handleProceedSaleOrder = () => {
+    proceedTransaction();
+    closeSaleOrders();
   };
 
   const hideAnalyze = () => {
@@ -73,6 +93,9 @@ const InjectPage: FC = () => {
       </>
     );
   }
+  if (saleOrders) {
+    return <SaleOrdersWrapper tokens={saleOrders} proceedTransaction={handleProceedSaleOrder} onClose={closeSaleOrders} />;
+  }
 
   // notification about checked url
   // if (urlCheckData?.status === PROJECT_ANALYSIS_STATUS.VALIDATED && isTurnOnWeb3Guard) {
@@ -84,7 +107,7 @@ const InjectPage: FC = () => {
   //   );
   // }
 
-  if (isTurnOnWeb3Guard && notification) {
+  if (notification) {
     return (
       <NotifyBlockWrapper
         {...NOTIFICATIONS_TEXTS[notification]}
@@ -94,7 +117,7 @@ const InjectPage: FC = () => {
     );
   }
 
-  if (isTurnOnWeb3Guard && popupNotification) {
+  if (popupNotification) {
     return (
       <PopupNotification
         {...NOTIFICATIONS_TEXTS[popupNotification]}

@@ -13,7 +13,7 @@ type TMarketplaceData = {
 
 export enum THEME {
   LIGHT = 'light-ext',
-  DARK = 'dark-ext',
+  DARK = 'light-ext',
 }
 
 export const DEFAULT_THEME = THEME.LIGHT;

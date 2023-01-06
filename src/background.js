@@ -6,12 +6,13 @@ import {
   URL_WHITE_LIST,
 } from "./constants/check-nft.constants.ts";
 import {
-  STORAGE_IS_TURN_ON_WEB3_GUARD,
+  STORAGE_IS_PAUSED,
   STORAGE_INSTALL_CHECKED,
   STORAGE_WHITELIST_FOR_WEB3_GUARD,
   STORAGE_USER_ID,
   STORAGE_TOKEN,
   CHECKED_URLS,
+  SESSION_WHITELIST,
 } from "./constants/chrome-storage.constants.ts";
 import { LANDING_URL } from "./constants/url.constants.ts";
 import {
@@ -19,6 +20,12 @@ import {
   ERROR_POPUP,
 } from "./constants/background.constants.ts";
 import { NOTIFICATION_ERROR_TYPES } from "./constants/error.constants.ts";
+import {
+  OPEN_TRACING_DIAGRAM_PAGE,
+  REQUEST_OPEN_TRACING_DIAGRAM_PAGE,
+  CHANGE_ICON_OFF,
+  CHANGE_ICON_ON,
+} from "./constants/chrome-send-message.constants.ts";
 import { getRandomToken } from "./helpers/token.helpers.ts";
 
 import * as Sentry from "@sentry/browser";
@@ -26,6 +33,29 @@ import * as Sentry from "@sentry/browser";
 Sentry.init({
   dsn: "https://1480486cfec4426f9cc5a2100c3f148f@sentry.apikey.io/100",
 });
+
+const TURN_ON_ICONS = {
+  path: {
+    16: "/icon16.png",
+    32: "/icon32.png",
+    48: "/icon48.png",
+    128: "/icon128.png",
+  },
+};
+
+const TURN_OFF_ICONS = {
+  path: {
+    16: "/icon16red.png",
+    32: "/icon32red.png",
+    48: "/icon48red.png",
+    128: "/icon128red.png",
+  },
+};
+
+const DEFAULT_PAUSE_VALUE = {
+  isPaused: false,
+  pauseUntilTime: null,
+};
 
 const getStorageValue = (key, onChange, defaultValue) => {
   if (chrome.storage) {
@@ -60,7 +90,7 @@ const getSyncStorageValue = (key, onChange, defaultValue) => {
 
 const setSyncStorageValue = (key, value) => {
   if (chrome.storage) {
-    chrome.storage.local
+    chrome.storage.sync
       .set({ [key]: value })
       .then()
       .catch((e) => console.log(e));
@@ -87,6 +117,22 @@ const registerScripts = async () => {
     },
   ]);
 };
+
+// check initial icon on browser load
+const updateIcon = () => {
+  getStorageValue(STORAGE_IS_PAUSED, async (value) => {
+    if (value && value.isPaused) {
+      if (value.pauseUntilTime && new Date(value.pauseUntilTime) > new Date()) {
+        chrome.action.setIcon(TURN_OFF_ICONS);
+        chrome.alarms.create('pause', { when: new Date(value.pauseUntilTime).getTime() });
+      } else {
+        setStorageValue(STORAGE_IS_PAUSED, DEFAULT_PAUSE_VALUE);
+      }
+    }
+  });
+};
+
+updateIcon();
 
 // check metamask extension for malicious
 const METAMASK_ORIGINAL_DATA = {
@@ -188,6 +234,7 @@ const initExtension = () => {
 };
 
 const handleUpdate = async () => {
+  updateIcon();
   await registerScripts();
   getStorageValue(STORAGE_INSTALL_CHECKED, (isChecked) => {
     if (!isChecked) {
@@ -258,18 +305,38 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     if (token) {
       if (tab && tab.url) {
         if (changeInfo.status === URL_STATUSES.loading && tab.active) {
-          getStorageValue(STORAGE_IS_TURN_ON_WEB3_GUARD, async (value) => {
-            if (value && value.isTurnOn) {
+          getStorageValue(STORAGE_IS_PAUSED, async (value) => {
+            if (
+              !value ||
+              !value.isPaused ||
+              !value.pauseUntilTime ||
+              new Date(value.pauseUntilTime) < new Date()
+            ) {
               getStorageValue(
                 STORAGE_WHITELIST_FOR_WEB3_GUARD,
                 async (value) => {
                   const siteName = getSiteName(tab.url);
-                  const checkedUrls =
-                    (await chrome.storage.session.get(CHECKED_URLS))[
-                      CHECKED_URLS
-                    ] || {};
+                  const [checkedUrls, whiteListUrlsData] = await Promise.all([
+                    chrome.storage.session.get(CHECKED_URLS)[CHECKED_URLS] ||
+                      {},
+                    chrome.storage.session.get(SESSION_WHITELIST),
+                  ]);
 
                   if (checkedUrls[siteName] === "neutral") {
+                    return;
+                  }
+
+                  const whiteListUrls =
+                    whiteListUrlsData[SESSION_WHITELIST] || {};
+
+                  if (siteName in whiteListUrls) {
+                    if (!whiteListUrls[siteName]) {
+                      delete whiteListUrls[siteName];
+                      chrome.storage.session.set({
+                        [SESSION_WHITELIST]: whiteListUrls,
+                      });
+                    }
+
                     return;
                   }
 
@@ -312,4 +379,91 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
 chrome.runtime.onInstalled.addListener(async () => {
   handleUpdate();
+  for (const cs of chrome.runtime.getManifest().content_scripts) {
+    for (const tab of await chrome.tabs.query({ url: cs.matches })) {
+      chrome.scripting.executeScript(
+        {
+          target: { tabId: tab.id },
+          files: cs.js,
+        },
+        () => {
+          chrome.runtime.lastError;
+          chrome.scripting.insertCSS(
+            {
+              target: { tabId: tab.id },
+              files: cs.css,
+            },
+            () => chrome.runtime.lastError
+          );
+        }
+      );
+    }
+  }
+});
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === CHANGE_ICON_ON) {
+    chrome.action.setIcon(TURN_ON_ICONS);
+  }
+
+  if (request.message === CHANGE_ICON_OFF) {
+    chrome.action.setIcon({
+      path: {
+        16: "/icon16red.png",
+        32: "/icon32red.png",
+        48: "/icon48red.png",
+        128: "/icon128red.png",
+      },
+    });
+  }
+});
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === REQUEST_OPEN_TRACING_DIAGRAM_PAGE) {
+    const sendMessage = {
+      message: OPEN_TRACING_DIAGRAM_PAGE,
+      trace: request.trace,
+    };
+    chrome.tabs.create(
+      { url: chrome.runtime.getURL("tracing.html") },
+      (tab) => {
+        const handler = (tabId, changeInfo) => {
+          if (tabId === tab.id && changeInfo.status === "complete") {
+            chrome.tabs.onUpdated.removeListener(handler);
+            chrome.tabs.sendMessage(
+              tabId,
+              sendMessage,
+              () => chrome.runtime.lastError
+            );
+          }
+        };
+        // in case we're faster than page load (usually):
+        chrome.tabs.onUpdated.addListener(handler);
+        // just in case we're too late with the listener:
+        chrome.tabs.sendMessage(
+          tab.id,
+          sendMessage,
+          () => chrome.runtime.lastError
+        );
+      }
+    );
+  }
+});
+
+chrome.alarms.onAlarm.addListener(() => {
+  chrome.action.setIcon(TURN_ON_ICONS);
+  setStorageValue(STORAGE_IS_PAUSED, DEFAULT_PAUSE_VALUE);
+});
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === CHANGE_ICON_ON) {
+    chrome.action.setIcon(TURN_ON_ICONS);
+    setStorageValue(STORAGE_IS_PAUSED, DEFAULT_PAUSE_VALUE);
+    chrome.alarms.clear('pause');
+  }
+
+  if (request.message === CHANGE_ICON_OFF) {
+    chrome.action.setIcon(TURN_OFF_ICONS);
+    chrome.alarms.create('pause', { delayInMinutes: 30 });
+  }
 });

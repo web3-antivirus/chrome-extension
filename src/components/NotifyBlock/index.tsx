@@ -1,7 +1,5 @@
-import { FC, memo } from 'react';
-
 import { getImageUrl } from 'helpers/image.helpers';
-
+import { FC, memo } from 'react';
 import styles from './styles.module.scss';
 
 type Props = {

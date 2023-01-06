@@ -1,0 +1,76 @@
+@import '../../assets/scss/helpers/typography';
+@import '../../assets/scss/helpers/mixins';
+
+.wrap {
+  border: 1px solid var(--extGray2);
+  border-radius: 16px;
+  padding: 13.5px 16px;
+  position: relative;
+  transition: 0.3s;
+
+  &:has(.header:hover) {
+    border-color: var(--extBlack);
+  }
+
+  .header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 2;
+
+    .main {
+      align-items: center;
+      display: flex;
+
+      img {
+        height: 16px;
+        margin-right: 8px;
+        width: 16px;
+      }
+
+      .name {
+        @include r1-b();
+        color: var(--extBlack);
+        margin-right: 4px;
+      }
+
+      .risksCount {
+        @include r2-b();
+        color: var(--extGray4);
+      }
+    }
+  }
+
+  .arrow {
+    transform: rotate(180deg);
+    transition: 0.3s;
+
+    path {
+      stroke: var(--extGray5);
+    }
+
+    &.open {
+      transform: rotate(0deg);
+
+      path {
+        stroke: var(--extBlack);
+      }
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    transition: 0.3s;
+
+    &.open {
+      margin-top: 12px;
+    }
+  }
+
+  &.disabled {
+    .header {
+      pointer-events: none;
+    }
+  }
+}
