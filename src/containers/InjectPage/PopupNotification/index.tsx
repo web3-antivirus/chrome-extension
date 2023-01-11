@@ -24,7 +24,9 @@ const PopupNotification: FC<Props> = ({ title, description }) => {
     </Layout>
   );
 
-  return createPortal(renderContent(), document.body);
+  const root = document.getElementById('web3-antivirus-host')?.shadowRoot?.getElementById('web3-antivirus');
+
+  return createPortal(renderContent(), root || document.body);
 };
 
 export default PopupNotification;

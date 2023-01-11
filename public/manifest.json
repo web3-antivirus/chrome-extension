@@ -1,7 +1,7 @@
 {
   "name": "Web3 Antivirus",
-  "description": "Take back your safety in Web3",
-  "version": "0.3.3",
+  "description": "The security tool protects you from web3 scams by auditing transactions and detecting phishing websites.",
+  "version": "0.3.4",
   "manifest_version": 3,
   "action": {
     "default_icon": {
@@ -35,7 +35,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["static/media/*", "script/main.js", "tracing.html"],
+      "resources": ["static/media/*", "script/main.js", "tracing.html", "static/css/inject.css"],
       "matches": ["<all_urls>"]
     }
   ],

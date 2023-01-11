@@ -4,6 +4,7 @@ import cn from 'classnames';
 import NotifyBlock from 'components/NotifyBlock';
 import verifiedIcon from 'assets/images/icons/verified-redesign.svg';
 import { TIME_OF_SHOWING_VERIFY_BLOCK } from 'constants/web3-guard.constants';
+import { getShadowRoot } from 'helpers/common.helpers';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -28,7 +29,7 @@ const NotifyBlockWrapper: FC<Props> = ({
   const renderContent = () => (
     isShowBlock
       ? (
-        <div className={cn(styles.wrapper, 'light-ext', 'extension-nft-check')}>
+        <div className={cn(styles.wrapper, 'light-ext', 'web3-antivirus')}>
           <NotifyBlock
             src={icon || verifiedIcon}
             alt="check icon"
@@ -41,7 +42,9 @@ const NotifyBlockWrapper: FC<Props> = ({
       : null
   );
 
-  return createPortal(renderContent(), document.body);
+  const root = getShadowRoot();
+
+  return createPortal(renderContent(), root || document.body);
 };
 
 export default NotifyBlockWrapper;

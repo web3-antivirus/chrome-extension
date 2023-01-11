@@ -23,6 +23,7 @@
       .text {
         @include r2(var(--extBlack));
         margin-top: 2px;
+        word-break: break-word;
 
         button {
           color: var(--extBlack);

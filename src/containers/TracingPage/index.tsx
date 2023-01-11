@@ -40,7 +40,7 @@ const TracingPage: FC<Props> = () => {
 
   return (
     <>
-      <div className={cn('light-ext', 'extension-nft-check')}>
+      <div className={cn('light-ext', 'web3-antivirus')}>
         <div
           className={styles.tracingWrapper}
           role="button"

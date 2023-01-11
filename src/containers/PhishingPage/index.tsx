@@ -32,7 +32,7 @@ const Web3Guard: FC = () => {
 
   return (
     <>
-      <div className={cn(styles.web3GuardWrapper, 'light-ext', 'extension-nft-check')}>
+      <div className={cn(styles.web3GuardWrapper, 'light-ext', 'web3-antivirus')}>
         <div className={styles.content}>
           <img src={getImageUrl(buttonLogo)} className={styles.icon} alt="attention icon" />
           <p className={styles.title}>Web3 Firewall Warning - Phishing Detected</p>

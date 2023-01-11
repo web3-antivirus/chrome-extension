@@ -1,3 +1,4 @@
+import { W3A_DECISION_EVENT } from 'constants/chrome-send-message.constants';
 import { PATH_TO_SCRIPT_FILE } from 'constants/global.constants';
 
 export const addScriptTagInPage = (): void => {
@@ -37,3 +38,14 @@ export const groupBy = <T>(
 export const getNftName = (id: string, name?: string): string => (name ? `${name}` : `#${id}`);
 
 export const isNull = (value: string | number | null | undefined): boolean => value === null || value === undefined;
+
+export const sendCustomMessage = (message: string): void => {
+  const documentEvent = new CustomEvent(W3A_DECISION_EVENT, {
+    detail: { decision: message },
+  });
+  document.dispatchEvent(documentEvent);
+};
+
+export const getShadowRoot = (): HTMLElement | null | undefined => (
+  document.getElementById('web3-antivirus-host')?.shadowRoot?.getElementById('web3-antivirus')
+);

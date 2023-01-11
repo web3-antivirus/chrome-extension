@@ -10,3 +10,12 @@ export const REQUEST_OPEN_TRACING_DIAGRAM_PAGE = 'requestOpenTracingDiagramPage'
 export const OPEN_TRACING_DIAGRAM_PAGE = 'openTracingDiagram';
 export const CHANGE_ICON_OFF = 'changeIconOff';
 export const CHANGE_ICON_ON = 'changeIconOn';
+
+export const W3A_DECISION_EVENT = 'w3aDecisionEvent';
+
+// TODO: replace with imports
+export const MESSAGE_BY_METAMASK_METHOD = {
+  eth_sendTransaction: METAMASK_PAUSE_TRANSACTION,
+  eth_sign: METAMASK_ETH_SIGN,
+  eth_signTypedData_v4: METAMASK_PAUSE_SIGN,
+};

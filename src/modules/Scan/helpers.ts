@@ -7,7 +7,7 @@ import { VulnerableCodeDetectorsData } from 'components/Risks/VulnerableCodeDete
 import { SwapPart, SwapToken } from 'components/SwapInfo/interfaces';
 import { RISK_TYPE } from 'constants/risks.constants';
 import {
-  MAX_ERC_20_AMOUNT, PAYMENT_TOKENS, TOKEN_TYPES, TOKEN_TYPES_LABELS,
+  MIN_ERC_20_LENGTH_FOR_APPROVE_ALL, PAYMENT_TOKENS, TOKEN_TYPES, TOKEN_TYPES_LABELS,
 } from 'constants/token.constants';
 import { fromWei } from 'helpers/big-number.helpers';
 import { getImageUrl } from 'helpers/image.helpers';
@@ -196,7 +196,7 @@ export const getApproves = (data: AnalyzeTransactionResponse): ApprovesDetails[]
 
     if (tokenData) {
       const contractData = contracts.find((contract) => operation.contractAddress === contract.address);
-      const isAllAssets = operation.value === MAX_ERC_20_AMOUNT;
+      const isAllAssets = String(operation.value).length >= MIN_ERC_20_LENGTH_FOR_APPROVE_ALL;
       const tokenSymbol = tokenData.contract.symbol || NA_TOKEN_LABEL;
 
       return {

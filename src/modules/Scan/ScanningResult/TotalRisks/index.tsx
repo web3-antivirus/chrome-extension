@@ -21,7 +21,7 @@ interface Props {
 }
 
 const TotalRisks: FC<Props> = ({ risks, handleTokenSelect }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const totalCount = useMemo(() => risks.reduce((count, risk) => count + (risk.risksCount || 0), 0), [risks]);
   const hasData = Boolean(risks.length);
 

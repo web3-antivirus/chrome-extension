@@ -1,14 +1,16 @@
 /* eslint-disable consistent-return */
 import { STORAGE_TOKEN } from 'constants/chrome-storage.constants';
 import { getValueToChromeStorage, subscribeChangesChromeStorage } from 'helpers/chrome-storage.helpers';
+import { getShadowRoot } from 'helpers/common.helpers';
 import {
   RefObject, useCallback, useEffect, useRef, useState,
 } from 'react';
 
-export const useExtensionScroll = (className: string) => {
+export const useExtensionScroll = (className: string): void => {
 
   useEffect(() => {
-    const [container] = document.getElementsByClassName(className);
+    const root = getShadowRoot();
+    const [container] = (root || document).getElementsByClassName(className);
 
     container?.addEventListener('wheel' as keyof ElementEventMap, (evt) => {
       evt.preventDefault();

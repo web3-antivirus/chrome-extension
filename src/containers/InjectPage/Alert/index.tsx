@@ -5,6 +5,7 @@ import Layout from 'components/Layout';
 import FooterButtons from 'components/FooterButtons';
 import { RISK_TYPE } from 'constants/risks.constants';
 import { ALERT_TITLE } from 'constants/alert.constants';
+import { getShadowRoot } from 'helpers/common.helpers';
 
 import styles from './styles.module.scss';
 
@@ -52,7 +53,9 @@ const Alert: FC<Props> = ({
     </Layout>
   );
 
-  return createPortal(renderContent(), document.body);
+  const root = getShadowRoot();
+
+  return createPortal(renderContent(), root || document.body);
 };
 
 export default Alert;

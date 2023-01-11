@@ -6,4 +6,5 @@ module.exports = {
       process: "process/browser",
     }),
   ],
+  devtool: 'cheap-module-source-map'
 };

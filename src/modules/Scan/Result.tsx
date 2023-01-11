@@ -11,6 +11,8 @@ import { useExtensionScroll } from 'hooks/common.hooks';
 import { Nft } from 'components/assetHeader/CollectionHeader/interfaces';
 import { tokenService } from 'services/token/token.service';
 import { ImageSize } from 'services/token/shared/enums';
+import FooterButtons from 'components/FooterButtons';
+
 import { COLLECTION_ALERT_STUB_LABEL, NO_COLLECTION_LABEL, RESULT_SCREENS } from './constants';
 import ScanningResult from './ScanningResult';
 import TransactionInfo from './TransactionInfo';
@@ -146,8 +148,6 @@ const Result: FC<Props> = ({
       case RESULT_SCREENS.SCANNING_RESULT:
         return (
           <ScanningResult
-            handleDecline={handleDecline}
-            handleProceed={handleProceed}
             alerts={alerts}
             risks={risks}
             handleTokenSelect={handleTokenSelect}
@@ -170,7 +170,7 @@ const Result: FC<Props> = ({
       default:
         return null;
     }
-  }, [screen, handleGoBack, handleDecline, handleProceed, alerts,
+  }, [screen, handleGoBack, alerts,
     hasSimulationAlert, risks, trace, tokenData, handleTokenSelect, transactionDetails]);
 
   return (
@@ -179,6 +179,11 @@ const Result: FC<Props> = ({
       <div className={cn(styles.wrapper, { [styles.scroll]: isPopUp })}>
         {renderScreen}
       </div>
+      <FooterButtons
+        handleDecline={handleDecline}
+        handleProceed={handleProceed}
+        text="What would you like to do?"
+      />
     </>
   );
 };

@@ -14,6 +14,7 @@ import { useUserToken } from 'hooks/common.hooks';
 import { ALERT_TEXTS } from 'constants/alert.constants';
 
 import { useMetamaskHandlers } from 'hooks/use-metamask-handlers';
+import { sendCustomMessage } from 'helpers/common.helpers';
 import { useToggle } from 'context/toggle.context';
 import NotifyBlockWrapper from './NotifyBlockWrapper';
 import AnalyzeWrapper from './AnalyzeWrapper';
@@ -49,7 +50,7 @@ const InjectPage: FC = () => {
   };
 
   const proceedTransaction = () => {
-    window.postMessage({ type: METAMASK_SEND_TRANSACTION, fromExtension: true, jsonData: transactionJSONData }, '*');
+    sendCustomMessage(METAMASK_SEND_TRANSACTION);
   };
 
   const handleProceedSaleOrder = () => {

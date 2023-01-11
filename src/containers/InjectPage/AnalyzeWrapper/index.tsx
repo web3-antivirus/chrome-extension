@@ -1,12 +1,13 @@
 import { FC, memo } from 'react';
 import cn from 'classnames';
-import { createPortal } from 'react-dom';
 
 import Scan from 'modules/Scan';
 import { DECLINE_TRANSACTION_WEB3_GUARD, METAMASK_SEND_TRANSACTION } from 'constants/chrome-send-message.constants';
 import { EXTENSION_ACTION_API } from 'constants/check-nft.constants';
 import { useCurrentUrl } from 'hooks/use-current-url';
+import { getShadowRoot, sendCustomMessage } from 'helpers/common.helpers';
 import { useAnalyzedContracts } from 'hooks/use-analyzed-contracts';
+import { createPortal } from 'react-dom';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -36,7 +37,7 @@ const AnalyzeWrapper: FC<Props> = ({ hideBlock, transactionParams }) => {
   };
 
   const handleProceed = (lowRiskContract: boolean, userId: string) => {
-    window.postMessage({ type: METAMASK_SEND_TRANSACTION, fromExtension: true, jsonData: transactionParams }, '*');
+    sendCustomMessage(METAMASK_SEND_TRANSACTION);
     handleSaveToDB({ actionType: 1, actionValue: lowRiskContract, userId });
     if (lowRiskContract) {
       setAnalyzedContract(url);
@@ -46,13 +47,13 @@ const AnalyzeWrapper: FC<Props> = ({ hideBlock, transactionParams }) => {
 
   const handleDecline = (userId: string) => {
     handleSaveToDB({ actionType: 1, actionValue: false, userId });
-    window.postMessage({ type: DECLINE_TRANSACTION_WEB3_GUARD }, '*');
+    sendCustomMessage(DECLINE_TRANSACTION_WEB3_GUARD);
     hideBlock();
   };
 
   const renderContent = () => (
     <div className={styles.overlay}>
-      <div className={cn(styles.wrapper, 'extension-nft-check')}>
+      <div className={cn(styles.wrapper, 'web3-antivirus')}>
         <Scan
           transactionParams={transactionParams}
           hideBlock={hideBlock}
@@ -63,7 +64,9 @@ const AnalyzeWrapper: FC<Props> = ({ hideBlock, transactionParams }) => {
     </div>
   );
 
-  return createPortal(renderContent(), document.body);
+  const root = getShadowRoot();
+
+  return createPortal(renderContent(), root || document.body);
 };
 
 export default memo(AnalyzeWrapper);

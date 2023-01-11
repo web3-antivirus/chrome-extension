@@ -6,6 +6,7 @@ import cn from 'classnames';
 import Button from 'components/ButtonNew';
 import { BUTTON_TYPES } from 'constants/button.constants';
 import Loader from 'components/Loader';
+import { sendCustomMessage } from 'helpers/common.helpers';
 import styles from './styles.module.scss';
 import { CANCEL_CHECK_WEB3_GUARD } from '../../../constants/chrome-send-message.constants';
 
@@ -18,7 +19,7 @@ const DISABLED_RISKS = ['IP infringements', 'Financial risks', 'Community valida
 
 const Main: FC<Props> = ({ hideBlock, status }) => {
   const handleCancelClick = () => {
-    window.postMessage({ type: CANCEL_CHECK_WEB3_GUARD }, '*');
+    sendCustomMessage(CANCEL_CHECK_WEB3_GUARD);
     hideBlock();
   };
 

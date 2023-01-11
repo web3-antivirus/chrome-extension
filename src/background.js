@@ -30,8 +30,9 @@ import { getRandomToken } from "./helpers/token.helpers.ts";
 
 import * as Sentry from "@sentry/browser";
 
+const isDevelopment = process.env.NODE_ENV === "development";
 Sentry.init({
-  dsn: "https://1480486cfec4426f9cc5a2100c3f148f@sentry.apikey.io/100",
+  dsn: isDevelopment ? "https://1480486cfec4426f9cc5a2100c3f148f@sentry.apikey.io/100" : "",
 });
 
 const TURN_ON_ICONS = {
@@ -112,7 +113,7 @@ const registerScripts = async () => {
       matches: ["http://*/*", "https://*/*"],
       js: ["/script/main.js"],
       allFrames: true,
-      runAt: "document_idle",
+      runAt: "document_start",
       world: "MAIN",
     },
   ]);
@@ -188,6 +189,7 @@ const updateToken = async (userId, utm, ga4) => {
       utm: utm ? utm.value : undefined,
       cid: ga4 ? ga4.value.slice(6) : undefined,
       id: userId,
+      dev: isDevelopment,
     }),
   });
 

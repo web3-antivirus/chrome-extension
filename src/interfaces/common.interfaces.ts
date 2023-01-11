@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-export interface CustomEvent { data: { type: string; jsonData: string }; }
+export interface ICustomEvent { data: { type: string; jsonData: string }; }
 
 export interface Tab {
   text: string;

@@ -17,7 +17,7 @@ const Layout: FC<Props> = ({ children, headerChild }) => {
 
   return createPortal(
     <div className={styles.overlay}>
-      <div className={cn(styles.wrapper, 'light-ext', 'extension-nft-check')}>
+      <div className={cn(styles.wrapper, 'light-ext', 'web3-antivirus')}>
         {headerChild || <Header />}
         {renderScreen}
       </div>

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { OrderNftsType } from 'helpers/metamask.helpers';
 import FooterButtons from 'components/FooterButtons';
 import Layout from 'components/Layout';
+import { getShadowRoot } from 'helpers/common.helpers';
 import Main from './Main';
 
 import styles from './styles.module.scss';
@@ -28,7 +29,9 @@ const SaleOrdersWrapper: FC<Props> = ({ onClose, proceedTransaction, tokens }) =
     </Layout>
   );
 
-  return createPortal(renderContent(), document.body);
+  const root = getShadowRoot();
+
+  return createPortal(renderContent(), root || document.body);
 };
 
 export default SaleOrdersWrapper;
