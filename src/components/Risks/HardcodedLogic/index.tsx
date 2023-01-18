@@ -9,10 +9,17 @@ import styles from './styles.module.scss';
 interface Props {
   className?: string
   risks: RiskData<HardcodedLogicData>
+  isVerified?: boolean,
 }
 
-const HardcodedLogic: FC<Props> = ({ className, risks }) => (
-  <Accordion name="Hardcoded logic" risksCount={risks.count} className={className} disabled={!risks.count}>
+const HardcodedLogic: FC<Props> = ({ className, risks, isVerified }) => (
+  <Accordion
+    name="Hardcoded logic"
+    risksCount={risks.count}
+    className={className}
+    disabled={!risks.count}
+    isVerified={isVerified}
+  >
     <div className={styles.wrap}>
       <div className={styles.description}>
         A hardcoded address was found in the contract, which might be a sign of a suspicious behavior
@@ -40,6 +47,7 @@ const HardcodedLogic: FC<Props> = ({ className, risks }) => (
 
 HardcodedLogic.defaultProps = {
   className: '',
+  isVerified: true,
 };
 
 export default HardcodedLogic;

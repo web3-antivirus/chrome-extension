@@ -17,6 +17,7 @@ import {
 } from 'interfaces/analyze.interfaces';
 import { groupBy, sortBy } from 'lodash';
 import ethIcon from 'assets/images/icons/eth-icon.svg';
+import unknownIcon from 'assets/images/icons/unknown-icon.svg';
 
 import { ImageSize } from 'services/token/shared/enums';
 import { tokenService } from 'services/token/token.service';
@@ -29,6 +30,7 @@ import {
   COLLECTION_ALERT_STUB_LABEL,
   NA_COLLECTION_LABEL,
   NA_TOKEN_LABEL,
+  NOT_VERIFIED_CONTRACT_DESCRIPTION,
   RISK_ALERT_TEXTS,
   SITE_ANALYSIS_INFO,
   STATUS_DURATION_SECONDS,
@@ -280,6 +282,7 @@ export const getRisks = (data: AnalyzeTransactionResponse, projectAddress: strin
       data: risks,
       contract: contractData,
       label: 'Collection',
+      description: contractData.verified ? '' : NOT_VERIFIED_CONTRACT_DESCRIPTION,
     };
 
     return [...acc, riskItem];
@@ -305,6 +308,7 @@ export const getRisks = (data: AnalyzeTransactionResponse, projectAddress: strin
         label: TOKEN_TYPES_LABELS[TOKEN_TYPES.ERC20],
         data: risks,
         contract: contractAnalyze,
+        description: contractAnalyze.verified ? '' : NOT_VERIFIED_CONTRACT_DESCRIPTION,
       };
 
       return [...acc, alert];
@@ -405,6 +409,7 @@ export const getAlerts = (data: AnalyzeTransactionResponse,
   const { risk: websiteRisk, text } = SITE_ANALYSIS_INFO[data.siteAnalysis.status];
   const websiteAlert: HighlightAlert = {
     risk: websiteRisk,
+    icon: websiteRisk === RISK_TYPE.MIDDLE ? unknownIcon : undefined,
     text,
   };
 

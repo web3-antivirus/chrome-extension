@@ -9,6 +9,7 @@ import { TOKEN_TYPES, TOKEN_TYPES_LABELS } from 'constants/token.constants';
 import Token from './Token';
 import { TokenData } from '../interfaces';
 import { getRisksSum } from '../helpers';
+import { NOT_VERIFIED_CONTRACT_DESCRIPTION } from '../constants';
 
 interface Props {
   handleGoBack: () => void;
@@ -21,6 +22,7 @@ enum TABS_TEXTS {
 }
 
 const TokenInfo: FC<Props> = ({ handleGoBack, data }) => {
+  const { isAddressVerified } = data.info;
   const TABS: Tab[] = useMemo(
     () => {
       const riskSum = getRisksSum(data.risks);
@@ -33,6 +35,7 @@ const TokenInfo: FC<Props> = ({ handleGoBack, data }) => {
           Component: () => (
             <Risks
               {...data.risks}
+              isVerified={isAddressVerified}
             />
           ),
         },
@@ -50,7 +53,7 @@ const TokenInfo: FC<Props> = ({ handleGoBack, data }) => {
           ),
         },
       ]);
-    }, [data],
+    }, [data, isAddressVerified],
   );
 
   return (
@@ -60,6 +63,8 @@ const TokenInfo: FC<Props> = ({ handleGoBack, data }) => {
         isAddressVerified={data.info.isAddressVerified}
         address={data.info.address}
         name={data.info.name}
+        description={!isAddressVerified ? NOT_VERIFIED_CONTRACT_DESCRIPTION : ''}
+        hasRisk={!isAddressVerified}
       />
       <Tabs data={TABS} />
     </>

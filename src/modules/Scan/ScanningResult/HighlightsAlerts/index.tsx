@@ -42,7 +42,7 @@ const HighlightsAlerts: FC<Props> = ({ alerts }) => {
       <div className={styles.alerts}>
         {alerts.map((alert) => (
           <div className={styles.alert} key={alert.text || alert.contract?.name}>
-            <img src={getImageUrl(RISK_ALERT_ICONS[alert.risk])} alt={alert.risk} />
+            <img src={getImageUrl(alert.icon || RISK_ALERT_ICONS[alert.risk])} alt={alert.risk} />
             <div className={styles.text}>
               {getAlertText(alert)}
             </div>

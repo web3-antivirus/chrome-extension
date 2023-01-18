@@ -29,7 +29,7 @@ const TotalRisks: FC<Props> = ({ risks, handleTokenSelect }) => {
   return (
     <div className={styles.wrap}>
       <button className={cn(styles.total, { [styles.noData]: !hasData })} onClick={() => setIsOpen(!isOpen)}>
-        <h2>Total risks</h2>
+        <h2>Audited contracts</h2>
         <span className={cn(styles.count, { [styles.hasRisks]: totalCount > 0 })}>({totalCount})</span>
         {hasData && <ArrowUpIcon classNames={cn(styles.arrow, { [styles.open]: isOpen })} />}
       </button>
@@ -65,7 +65,8 @@ const TotalRisks: FC<Props> = ({ risks, handleTokenSelect }) => {
                   className={cn({ [styles.verified]: isVerified })}
                   src={getImageUrl(
                     isVerified ? verifiedIcon
-                      : (!risksCount || contract?.contract?.securityLevel === SECURITY_LEVEL.WHITELIST) ? checkIcon : alertIcon,
+                      : ((!risksCount && contract?.verified) || contract?.contract?.securityLevel === SECURITY_LEVEL.WHITELIST)
+                        ? checkIcon : alertIcon,
                   )}
                   alt={isVerified ? 'verified' : risk}
                 />
@@ -75,7 +76,8 @@ const TotalRisks: FC<Props> = ({ risks, handleTokenSelect }) => {
               {description && <p className={styles.description}>{description}</p>}
             </div>
             <div className={styles.risksWrap}>
-              {!isVerified && <div className={styles.count}>{risksCount} {pluralize('risk', risksCount)}</div>}
+              {(!isVerified && (contract?.verified || (Boolean(risksCount))))
+              && <div className={styles.count}>{risksCount} {pluralize('risk', risksCount)}</div>}
               <ArrowUpIcon classNames={styles.arrowRisk} />
             </div>
           </button>

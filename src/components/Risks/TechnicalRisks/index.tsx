@@ -10,13 +10,15 @@ import { RiskData } from '../interfaces';
 interface Props {
   className?: string
   risks: RiskData<TechnicalRisksData>
+  isVerified?: boolean,
 }
-const TechnicalRisks: FC<Props> = ({ className, risks }) => (
+const TechnicalRisks: FC<Props> = ({ className, risks, isVerified }) => (
   <Accordion
     name="Technical risks"
     risksCount={risks.count}
     className={className}
     disabled={!risks.count}
+    isVerified={isVerified}
     defaultOpen={Boolean(risks.count)}
   >
     <div className={styles.wrap}>
@@ -33,5 +35,6 @@ const TechnicalRisks: FC<Props> = ({ className, risks }) => (
 
 TechnicalRisks.defaultProps = {
   className: '',
+  isVerified: true,
 };
 export default TechnicalRisks;

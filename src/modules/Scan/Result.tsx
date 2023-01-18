@@ -175,7 +175,7 @@ const Result: FC<Props> = ({
 
   return (
     <>
-      <HeaderRisk address={contract.address} riskType={risk} isAddressVerified={contract.verified} />
+      <HeaderRisk riskType={risk} isAddressVerified={contract.verified} />
       <div className={cn(styles.wrapper, { [styles.scroll]: isPopUp })}>
         {renderScreen}
       </div>

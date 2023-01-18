@@ -71,6 +71,7 @@ export const SITE_ANALYSIS_INFO = {
 };
 
 export const VERIFIED_CONTRACT_DESCRIPTION = 'The contract is in the W3A whitelist. You can trust it.';
+export const NOT_VERIFIED_CONTRACT_DESCRIPTION = 'The contract is not verified.';
 
 // https://github.com/crytic/slither
 export const CODE_DETECTORS_INFO: { [x: string]: string } = {

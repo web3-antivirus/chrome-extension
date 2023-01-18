@@ -7,6 +7,7 @@ import { getImageUrl } from 'helpers/image.helpers';
 import alertIcon from 'assets/images/icons/danger.svg';
 import checkIcon from 'assets/images/icons/check-circle.svg';
 import { ArrowUpIcon } from 'constants/icons.constants';
+import unknownIcon from 'assets/images/icons/unknown-icon.svg';
 
 import styles from './styles.module.scss';
 
@@ -17,10 +18,11 @@ interface Props {
   defaultOpen?: boolean
   className?: string;
   disabled?: boolean;
+  isVerified?: boolean,
 }
 
 const Accordion: FC<Props> = ({
-  risksCount, name, children, className, defaultOpen, disabled,
+  risksCount, name, children, className, defaultOpen, disabled, isVerified,
 }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -31,12 +33,12 @@ const Accordion: FC<Props> = ({
       <button className={styles.header} onClick={() => !disabled && setIsOpen(!isOpen)}>
         <div className={styles.main}>
           <img
-            className={styles.icon}
-            src={getImageUrl(risksCount ? alertIcon : checkIcon)}
+            className={cn(styles.icon, { [styles.round]: !risksCount && !isVerified })}
+            src={getImageUrl(risksCount ? alertIcon : (isVerified ? checkIcon : unknownIcon))}
             alt=""
           />
           <span className={styles.name}>{name}</span>
-          <span className={styles.risksCount}>({risksCount})</span>
+          {(isVerified || Boolean(risksCount)) && <span className={styles.risksCount}>({risksCount})</span>}
         </div>
         {!disabled && (
           <div className={styles.iconWrap}>
@@ -60,6 +62,7 @@ Accordion.defaultProps = {
   className: '',
   defaultOpen: false,
   disabled: false,
+  isVerified: true,
 };
 
 export default Accordion;

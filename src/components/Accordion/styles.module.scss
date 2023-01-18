@@ -27,6 +27,10 @@
         height: 16px;
         margin-right: 8px;
         width: 16px;
+
+        &.round {
+          border-radius: 50%;
+        }
       }
 
       .name {

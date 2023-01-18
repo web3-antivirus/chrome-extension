@@ -9,21 +9,23 @@ import HardcodedLogic from './HardcodedLogic';
 
 type Props = RisksData & {
   className?: string
+  isVerified?: boolean,
 }
 
 const Risks: FC<Props> = ({
-  className, technicalRisks, vulnerableCodeDetectors, hardcodedLogic,
+  className, technicalRisks, vulnerableCodeDetectors, hardcodedLogic, isVerified,
 }) => (
   <div className={cn(styles.wrap, className)}>
-    <TechnicalRisks risks={technicalRisks} className={styles.risk} />
+    <TechnicalRisks risks={technicalRisks} className={styles.risk} isVerified={isVerified} />
     {/* <SuspiciousActivity risks={suspiciousActivity} className={styles.risk} /> */}
-    <VulnerableCodeDetectors risks={vulnerableCodeDetectors} className={styles.risk} />
-    <HardcodedLogic risks={hardcodedLogic} className={styles.risk} />
+    <VulnerableCodeDetectors risks={vulnerableCodeDetectors} className={styles.risk} isVerified={isVerified} />
+    <HardcodedLogic risks={hardcodedLogic} className={styles.risk} isVerified={isVerified} />
   </div>
 );
 
 Risks.defaultProps = {
   className: '',
+  isVerified: true,
 };
 
 export default Risks;

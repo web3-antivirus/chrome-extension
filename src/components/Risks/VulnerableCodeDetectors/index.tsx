@@ -9,10 +9,17 @@ import styles from './styles.module.scss';
 interface Props {
   className?: string
   risks: RiskData<VulnerableCodeDetectorsData>
+  isVerified?: boolean,
 }
 
-const VulnerableCodeDetectors: FC<Props> = ({ className, risks }) => (
-  <Accordion name="Vulnerable code detectors" risksCount={risks.count} className={className} disabled={!risks.count}>
+const VulnerableCodeDetectors: FC<Props> = ({ className, risks, isVerified }) => (
+  <Accordion
+    name="Vulnerable code detectors"
+    risksCount={risks.count}
+    className={className}
+    disabled={!risks.count}
+    isVerified={isVerified}
+  >
     <div className={styles.wrap}>
       <div className={styles.detectors}>
         {risks.data.map(({ name, info }, index) => (
@@ -29,6 +36,7 @@ const VulnerableCodeDetectors: FC<Props> = ({ className, risks }) => (
 
 VulnerableCodeDetectors.defaultProps = {
   className: '',
+  isVerified: true,
 };
 
 export default VulnerableCodeDetectors;

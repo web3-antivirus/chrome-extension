@@ -11,6 +11,7 @@ import styles from './styles.module.scss';
 import Tracing from '../Tracing/Tracing';
 import { TokenData, TransactionDetailsData } from '../interfaces';
 import { getRisksSum } from '../helpers';
+import { NOT_VERIFIED_CONTRACT_DESCRIPTION } from '../constants';
 
 interface Props {
   handleGoBack: () => void;
@@ -29,6 +30,8 @@ enum TABS_TEXTS {
 const TransactionInfo: FC<Props> = ({
   handleGoBack, trace, data, transactionDetails, hasSimulationAlert,
 }) => {
+  const { isAddressVerified } = data.info;
+
   const TABS: Tab[] = useMemo(
     () => {
       const riskSum = getRisksSum(data.risks);
@@ -53,6 +56,7 @@ const TransactionInfo: FC<Props> = ({
           Component: () => (
             <Risks
               {...data.risks}
+              isVerified={isAddressVerified}
             />
           ),
         }] : []),
@@ -63,7 +67,7 @@ const TransactionInfo: FC<Props> = ({
         },
       ];
     },
-    [trace],
+    [trace, isAddressVerified],
   );
 
   return (
@@ -74,9 +78,12 @@ const TransactionInfo: FC<Props> = ({
         isVerified={data.info.isVerified}
         description={
           data.info.isVerified
-            ? 'You can trust the website, it is on the W3A whitelist. That\'s why we don\'t show any risks.' : ''
+            ? 'You can trust the website, it is on the W3A whitelist. That\'s why we don\'t show any risks.'
+            : isAddressVerified ? NOT_VERIFIED_CONTRACT_DESCRIPTION : ''
         }
-        hasRisk={data.info.hasRisk}
+        hasRisk={data.info.hasRisk || !isAddressVerified}
+        address={data.info.address}
+        isAddressVerified={isAddressVerified}
       />
       <Tabs data={TABS} />
     </div>

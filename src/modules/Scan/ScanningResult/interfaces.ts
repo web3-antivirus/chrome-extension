@@ -21,5 +21,6 @@ export interface HighlightAlert {
     verified: boolean;
     name: string
   }
+  icon?: string;
   simulation?: Trace[];
 }

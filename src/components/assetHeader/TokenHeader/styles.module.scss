@@ -1,6 +1,28 @@
 @import 'assets/scss/helpers/typography';
 
-.name {
-  @include h1();
+.description {
+  color: var(--extGray5);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  margin-bottom: 12px;
+}
+
+.header {
+  align-items: center;
+  display: flex;
   padding-bottom: 12px;
+
+  .name {
+    @include h1();
+  }
+
+  .icon {
+    margin-left: 4px;
+  }
+
+  .risksIcon {
+    height: 18px;
+    width: 18px;
+  }
 }

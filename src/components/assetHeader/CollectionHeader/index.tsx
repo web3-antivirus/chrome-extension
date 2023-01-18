@@ -6,6 +6,7 @@ import { getNftName } from 'helpers/common.helpers';
 
 import { Nft } from './interfaces';
 import AssetHeader from '..';
+import styles from './styles.module.scss';
 
 interface Props {
   handleGoBack: () => void;
@@ -13,9 +14,10 @@ interface Props {
   address: string;
   isAddressVerified?: boolean;
   collectionId: string;
+  description?: string;
 }
 const CollectionHeader: FC<Props> = ({
-  handleGoBack, nfts, address, isAddressVerified, collectionId,
+  handleGoBack, nfts, address, isAddressVerified, collectionId, description,
 }) => (
   <AssetHeader handleGoBack={handleGoBack}>
     <div>
@@ -29,6 +31,7 @@ const CollectionHeader: FC<Props> = ({
           collectionId={collectionId}
         />
       ))}
+      {description && <div className={styles.description}>{description}</div>}
       <Address address={address} isVerified={isAddressVerified} />
     </div>
   </AssetHeader>
@@ -36,6 +39,7 @@ const CollectionHeader: FC<Props> = ({
 
 CollectionHeader.defaultProps = {
   isAddressVerified: false,
+  description: '',
 };
 
 export default CollectionHeader;
