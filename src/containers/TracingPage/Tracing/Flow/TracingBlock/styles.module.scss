@@ -73,9 +73,9 @@
       display: flex;
 
       .alertIcon {
-        height: 12px;
+        height: 14px;
         margin-left: 4px;
-        width: 12px;
+        width: 14px;
       }
     }
   }
@@ -89,13 +89,6 @@
     @include cursorPointer();
     background: unset;
     border: 0;
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
 
     &:disabled {
       @include cursorDefault();

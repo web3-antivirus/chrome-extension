@@ -1,5 +1,9 @@
 .risk {
-  &:not(:last-child) {
-    margin-bottom: 8px;
+  &:first-child {
+    margin-top: 9px;
+  }
+
+  &:not(:first-child) {
+    margin-top: 13px;
   }
 }

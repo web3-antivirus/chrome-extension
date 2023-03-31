@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import Layout from 'components/Layout';
 import { getImageUrl } from 'helpers/image.helpers';
 import attentionIcon from 'assets/images/icons/attention-icon.svg';
+import { getShadowRoot } from 'helpers/common.helpers';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -24,7 +25,7 @@ const PopupNotification: FC<Props> = ({ title, description }) => {
     </Layout>
   );
 
-  const root = document.getElementById('web3-antivirus-host')?.shadowRoot?.getElementById('web3-antivirus');
+  const root = getShadowRoot();
 
   return createPortal(renderContent(), root || document.body);
 };

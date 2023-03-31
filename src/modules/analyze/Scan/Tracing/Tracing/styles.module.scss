@@ -1,0 +1,131 @@
+.tracingContent {
+  background-color: var(--extGray1);
+  border-radius: 16px;
+  overflow: auto;
+  padding: 12px;
+
+  &::-webkit-scrollbar {
+    background-color: var(--extGray1);
+    border-radius: 4px;
+    height: 8px;
+    margin-top: 8px;
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--extGray4) !important;
+    border-radius: 4px;
+    height: 8px;
+    margin-bottom: 8px;
+    width: 8px;
+  }
+
+  .rootBlock {
+    display: inline-flex;
+    position: relative;
+
+    .arrowIcon {
+      bottom: -16px;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+    }
+  }
+
+  .hideMethods {
+    background-color: var(--extBlack);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 72px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    max-width: 173px;
+    padding: 8px;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+
+    > p {
+      color: var(--extWhite);
+      flex-grow: 1;
+      font-size: 12px;
+      line-height: 16px;
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+
+    .link {
+      display: flex;
+      font-size: 12px;
+      justify-content: center;
+      line-height: 16px;
+      padding: 8px 20px;
+
+      .buttonInner {
+        align-items: center;
+        display: flex;
+
+        img {
+          margin-left: 4px;
+        }
+      }
+    }
+
+    &.withMoreLastItems {
+      margin-bottom: 32px;
+
+      img {
+        bottom: -33px;
+      }
+    }
+
+    > img {
+      bottom: -16px;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.bold {
+  font-weight: 600 !important;
+}
+
+.lastDepth {
+  display: flex;
+
+  .lastDepthItem {
+    display: inline-flex;
+    position: relative;
+
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+
+    > img {
+      height: 29px;
+      left: calc(-50% - 1px);
+      position: absolute;
+      top: -62%;
+      transform: translate(90%, 90%);
+      width: 188px;
+
+      &.oneArrow {
+        transform: translate(90%, 50%);
+      }
+
+      &.secondArrowType {
+        top: calc(-50% + 0.3px);
+        transform: translate(89%, 115%);
+      }
+    }
+  }
+}
+
+.warning {
+  margin-bottom: 8px;
+}

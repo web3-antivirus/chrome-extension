@@ -1,7 +1,8 @@
-export const SEND_DOCUMENT = 'send_document';
 export const METAMASK_PAUSE_TRANSACTION = 'metamaskPauseTransaction';
 export const METAMASK_PAUSE_SIGN = 'metamaskPauseSign';
 export const METAMASK_SEND_TRANSACTION = 'metamaskSendTransaction';
+export const PERSONAL_SIGN = 'personal_sign';
+
 export const CHANGE_IS_TURN_ON_WEB3_GUARD = 'changeIsTurnOnWeb3Guard';
 export const CANCEL_CHECK_WEB3_GUARD = 'cancelCheckWeb3Guard';
 export const DECLINE_TRANSACTION_WEB3_GUARD = 'declineTransactionWeb3Guard';
@@ -18,4 +19,5 @@ export const MESSAGE_BY_METAMASK_METHOD = {
   eth_sendTransaction: METAMASK_PAUSE_TRANSACTION,
   eth_sign: METAMASK_ETH_SIGN,
   eth_signTypedData_v4: METAMASK_PAUSE_SIGN,
+  personal_sign: PERSONAL_SIGN,
 };

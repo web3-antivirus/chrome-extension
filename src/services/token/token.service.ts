@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import startsWith from 'lodash/startsWith';
 import endsWith from 'lodash/endsWith';
 
-import logo from 'assets/images/no-token-avatar.svg';
+import logo from 'assets/images/collection/nft-stub.svg';
 import { IMAGE_DOMAIN } from 'constants/url.constants';
 import { getImageUrl } from 'helpers/image.helpers';
 

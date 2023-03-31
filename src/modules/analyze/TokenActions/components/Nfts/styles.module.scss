@@ -1,0 +1,87 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  background: var(--extWhite);
+  border: 1px solid var(--extGray2);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.nftImage {
+  border-radius: 7.5px;
+  height: 48px;
+  width: 48px;
+}
+
+.collectionName {
+  @include r3;
+  color: var(--extGray5);
+}
+
+.singleNft {
+  display: flex;
+  gap: 8px;
+
+  .nameWrap {
+    padding: 4.5px 0;
+    word-break: break-word;
+  }
+
+  .top {
+    @include r1-b();
+    display: flex;
+    margin-bottom: 2px;
+  }
+}
+
+.nftsList {
+  .list {
+    align-items: center;
+    display: flex;
+
+    .item {
+      &:not(:first-child) {
+        border: 2.25px solid var(--extWhite);
+        margin-left: -24px;
+      }
+    }
+
+    .count {
+      align-items: center;
+      background-color: var(--extGray3);
+      border-radius: 7.5px;
+      display: flex;
+      font-size: 15.75px;
+      font-weight: 700;
+      height: 48px;
+      justify-content: center;
+      letter-spacing: -0.375px;
+      line-height: 20px;
+      width: 48px;
+    }
+  }
+
+  .collectionName {
+    margin-top: 8px;
+  }
+}
+
+.price {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  margin-left: auto;
+  text-align: right;
+}
+
+.eth {
+  @include r1();
+}
+
+.usd {
+  @include r3();
+  color: var(--extGray5);
+  line-height: 16px;
+}

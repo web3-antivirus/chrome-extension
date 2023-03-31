@@ -26,7 +26,7 @@ const VulnerableCodeDetectors: FC<Props> = ({ className, risks, isVerified }) =>
           <div className={styles.detector} key={uuidv4()}>
             <span className={styles.index}>#{index + 1}</span>
             <div className={styles.name}>{name}</div>
-            <InfoPopup content={info} />
+            {info && <InfoPopup content={info} />}
           </div>
         ))}
       </div>

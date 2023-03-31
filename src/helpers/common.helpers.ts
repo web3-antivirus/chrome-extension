@@ -1,3 +1,4 @@
+import browser from 'webextension-polyfill';
 import { W3A_DECISION_EVENT } from 'constants/chrome-send-message.constants';
 import { PATH_TO_SCRIPT_FILE } from 'constants/global.constants';
 
@@ -5,7 +6,7 @@ export const addScriptTagInPage = (): void => {
   // NOTE: This adds the script.js file from src/script.js to the external page. After building the project, this file will have
   // the path script/main.js (PATH_TO_SCRIPT_FILE). Therefore, this function specifies the path after the project is built
   const script = window.document.createElement('script');
-  script.src = chrome.runtime?.getURL(PATH_TO_SCRIPT_FILE);
+  script.src = browser.runtime?.getURL(PATH_TO_SCRIPT_FILE);
   (window.document.head || window.document.documentElement).appendChild(script);
 };
 
@@ -41,7 +42,7 @@ export const isNull = (value: string | number | null | undefined): boolean => va
 
 export const sendCustomMessage = (message: string): void => {
   const documentEvent = new CustomEvent(W3A_DECISION_EVENT, {
-    detail: { decision: message },
+    detail: message,
   });
   document.dispatchEvent(documentEvent);
 };

@@ -35,7 +35,7 @@ const getExtensionId = async (page) => {
   return extensionId;
 };
 
-describe("My Extension", () => {
+describe("Web3 Antivirus tests", () => {
   beforeAll(async () => {
     browser = await getBrowser();
     page = await browser.newPage();
@@ -52,7 +52,16 @@ describe("My Extension", () => {
   
     const h3Element = await page.$("h3");
     const h3Text = await h3Element.evaluate((e) => e.innerText);
-    expect(h3Text).toEqual("W3A is running in the background");
+    expect(h3Text).toEqual("Protection");
+  });
+
+  it("content script injecting into page", async () => {
+    await page.goto(`https://web3antivirus.io`);
+    await page.bringToFront();
+    
+    const antivirusRoot = await page.$('#web3-antivirus-host');
+
+    expect(antivirusRoot).toBeTruthy();
   });
 
   it("user token created", async () => {

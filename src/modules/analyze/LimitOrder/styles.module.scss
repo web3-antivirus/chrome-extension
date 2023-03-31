@@ -1,0 +1,27 @@
+@import 'assets/scss/helpers/typography';
+@import 'assets/scss/helpers/mixins';
+
+.header {
+  .title {
+    @include h1;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .message {
+    @include r2(var(--extGray5));
+  }
+}
+
+.main {
+  .title {
+    @include h3;
+    margin-bottom: 8px;
+  }
+
+  .contractData {
+    margin-bottom: 24px;
+  }
+}

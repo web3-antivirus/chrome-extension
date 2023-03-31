@@ -4,9 +4,7 @@
   background-color: var(--extWhite);
 
   .header {
-    border-bottom: 1px solid var(--extGray3);
     display: flex;
-    padding: 0 16px;
 
     .tab {
       @include h4;
@@ -15,6 +13,7 @@
       color: var(--extGray4);
       display: flex;
       padding: 16px 12px;
+      text-transform: none;
       transition: 0.3s;
 
       &:hover {
@@ -23,6 +22,7 @@
 
       &.active {
         border-color: var(--extBlack);
+        color: var(--extBlack);
       }
 
       .count {
@@ -30,9 +30,21 @@
         margin-left: 2px;
       }
 
+      .risksCount {
+        background: rgba(228, 92, 81, 0.1);
+        border-radius: 24px;
+        color: var(--extError);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 16px;
+        margin-left: 4px;
+        padding: 0 6px 1px;
+        width: max-content;
+      }
+
       .icon {
         height: 12px;
-        margin-left: 2px;
+        margin-left: 4px;
         width: 12px;
       }
     }
@@ -41,4 +53,39 @@
   .body {
     padding: 16px 16px 24px;
   }
+}
+
+.headerWrap {
+  border-bottom: 1px solid var(--extGray3);
+  overflow: auto;
+  padding: 0 16px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.shadowsWrap {
+  position: relative;
+
+  &::before,
+  &::after {
+    bottom: 1px;
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 24px;
+  }
+
+  &::before {
+    background: linear-gradient(90deg, #FFF 0%, rgba(255, 255, 255, 0) 100%);
+    left: 0;
+  }
+
+  &::after {
+    background: linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0) 100%);
+    right: 0;
+  }
+
+
 }

@@ -2,6 +2,7 @@ import {
   FC, memo, useEffect, useState,
 } from 'react';
 import cn from 'classnames';
+import browser from 'webextension-polyfill';
 import { stylesForHideWalletConnect } from 'constants/style.constants';
 import logoLight from 'assets/images/icons/logo-redesign.svg';
 import { OPEN_TRACING_DIAGRAM_PAGE } from '../../constants/chrome-send-message.constants';
@@ -29,10 +30,10 @@ const TracingPage: FC<Props> = () => {
           setTrace(response.trace);
           sessionStorage.setItem(TRACE_DATA_KEY, JSON.stringify(response.trace));
         }
-        chrome.runtime.onMessage.removeListener(onMessageHandler);
+        browser.runtime.onMessage.removeListener(onMessageHandler);
       };
-      chrome.runtime.onMessage.addListener(onMessageHandler);
-      return () => chrome.runtime.onMessage.removeListener(onMessageHandler);
+      browser.runtime.onMessage.addListener(onMessageHandler);
+      return () => browser.runtime.onMessage.removeListener(onMessageHandler);
     }
     setTrace(JSON.parse(traceDataFromStorage) ?? []);
     return () => null;
@@ -41,11 +42,7 @@ const TracingPage: FC<Props> = () => {
   return (
     <>
       <div className={cn('light-ext', 'web3-antivirus')}>
-        <div
-          className={styles.tracingWrapper}
-          role="button"
-          tabIndex={0}
-        >
+        <div className={styles.tracingWrapper}>
           {!!trace.length && (
             <div className={styles.content}>
               <Tracing trace={trace} />

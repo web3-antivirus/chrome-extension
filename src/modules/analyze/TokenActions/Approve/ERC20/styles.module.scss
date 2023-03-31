@@ -1,0 +1,25 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  @include r1;
+  align-items: center;
+  background: var(--extWhite);
+  border: 1px solid var(--extGray2);
+  border-radius: 16px;
+  color: var(--extBlack);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 16px;
+
+  .info {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+
+    .tokenImage {
+      height: 24px;
+      width: 24px;
+    }
+  }
+}

@@ -1,11 +1,12 @@
+import browser from 'webextension-polyfill';
 import { IPFS_PROTOCOL, IPFS_URL } from 'services/token/shared/constants';
 import { getCodeExecutionEnvironment } from './environments.helpers';
 
 export const getImageUrl = (src: string): string => {
   const { isInject } = getCodeExecutionEnvironment();
 
-  if (isInject && chrome.runtime) {
-    return chrome.runtime.getURL(src);
+  if (isInject && browser.runtime) {
+    return browser.runtime.getURL(src);
   }
 
   return src;

@@ -78,7 +78,7 @@ const Web3Guard: FC = () => {
           <Checkbox value={isChecked} setValue={() => setIsChecked(!isChecked)} classNameLabel={styles.label}>
             Permanently unblock this website
           </Checkbox>
-          <a href={LANDING_URL} rel="noreferrer" target="__blank">
+          <a className={styles.logoWrap} href={LANDING_URL} rel="noreferrer" target="__blank">
             <img src={getImageUrl(logo)} className={styles.logo} alt="logo web3 antivirus" />
           </a>
         </div>

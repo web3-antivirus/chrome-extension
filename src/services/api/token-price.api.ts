@@ -1,5 +1,4 @@
 import { EXTENSION_PAYMENT_TOKEN_API } from 'constants/check-nft.constants';
-import { PAYMENT_TOKENS, TOKEN_LABELS } from 'constants/token.constants';
 import { post } from 'helpers/axios.helper';
 import { fromWei } from 'helpers/big-number.helpers';
 import { useMemo } from 'react';
@@ -27,7 +26,8 @@ export const useTokenPrice = (tokenAddress: string, weiAmount: string) => {
 
   return {
     price,
-    symbol: tokenInfo?.symbol ? ((TOKEN_LABELS[(tokenInfo?.symbol as PAYMENT_TOKENS)]) || tokenInfo?.symbol) : '',
+    symbol: tokenInfo?.symbol || '',
     loading: !data && !error,
+    decimals: tokenInfo?.decimals || null,
   };
 };

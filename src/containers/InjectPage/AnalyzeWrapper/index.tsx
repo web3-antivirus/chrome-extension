@@ -1,21 +1,24 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import cn from 'classnames';
 
-import Scan from 'modules/Scan';
+import Scan from 'modules/analyze/Scan';
 import { DECLINE_TRANSACTION_WEB3_GUARD, METAMASK_SEND_TRANSACTION } from 'constants/chrome-send-message.constants';
 import { EXTENSION_ACTION_API } from 'constants/check-nft.constants';
 import { useCurrentUrl } from 'hooks/use-current-url';
 import { getShadowRoot, sendCustomMessage } from 'helpers/common.helpers';
 import { useAnalyzedContracts } from 'hooks/use-analyzed-contracts';
 import { createPortal } from 'react-dom';
+import { ErrorBoundary } from 'components/ErrorBoundary/ErrorBoundary';
+import { WALLET_PROVIDERS } from 'constants/wallet.constants';
 import styles from './styles.module.scss';
 
 type Props = {
   transactionParams: string
   hideBlock: () => void
+  walletProvider: WALLET_PROVIDERS | null
 };
 
-const AnalyzeWrapper: FC<Props> = ({ hideBlock, transactionParams }) => {
+const AnalyzeWrapper: FC<Props> = ({ hideBlock, transactionParams, walletProvider }) => {
   const [, setAnalyzedContract] = useAnalyzedContracts();
   const url = useCurrentUrl();
 
@@ -36,9 +39,14 @@ const AnalyzeWrapper: FC<Props> = ({ hideBlock, transactionParams }) => {
     });
   };
 
+  const handleConfirmTransaction = useCallback(() => {
+    sendCustomMessage(METAMASK_SEND_TRANSACTION);
+    hideBlock();
+  }, [hideBlock]);
+
   const handleProceed = (lowRiskContract: boolean, userId: string) => {
     sendCustomMessage(METAMASK_SEND_TRANSACTION);
-    handleSaveToDB({ actionType: 1, actionValue: lowRiskContract, userId });
+    handleSaveToDB({ actionType: 1, actionValue: true, userId });
     if (lowRiskContract) {
       setAnalyzedContract(url);
     }
@@ -52,16 +60,19 @@ const AnalyzeWrapper: FC<Props> = ({ hideBlock, transactionParams }) => {
   };
 
   const renderContent = () => (
-    <div className={styles.overlay}>
-      <div className={cn(styles.wrapper, 'web3-antivirus')}>
-        <Scan
-          transactionParams={transactionParams}
-          hideBlock={hideBlock}
-          handleProceed={handleProceed}
-          handleDecline={handleDecline}
-        />
+    <ErrorBoundary handleError={handleConfirmTransaction}>
+      <div className={styles.overlay}>
+        <div className={cn(styles.wrapper, 'web3-antivirus')}>
+          <Scan
+            transactionParams={transactionParams}
+            hideBlock={hideBlock}
+            handleProceed={handleProceed}
+            handleDecline={handleDecline}
+            walletProvider={walletProvider}
+          />
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 
   const root = getShadowRoot();

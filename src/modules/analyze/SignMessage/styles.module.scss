@@ -1,0 +1,62 @@
+@import 'assets/scss/helpers/typography';
+@import 'assets/scss/helpers/mixins';
+
+.header {
+  background-color: var(--extGray1);
+
+  .title {
+    @include h1;
+    margin-bottom: 12px;
+  }
+}
+
+.header,
+.messageWrap {
+  padding: 24px 16px;
+}
+
+.messageWrap {
+  background-color: var(--extWhite);
+
+  .title {
+    @include h3;
+    margin-bottom: 8px;
+  }
+
+  .message {
+    @include r1;
+    border: 1px solid var(--extGray2);
+    border-radius: 16px;
+    color: var(--extGray5);
+    max-height: 300px;
+    overflow: hidden;
+    padding: 16px;
+    word-break: break-word;
+
+    .row {
+      @include r1;
+      display: flex;
+      gap: 4px;
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      .field {
+        color: var(--extGray5);
+        min-width: fit-content;
+      }
+
+      .address {
+        color: var(--extPrimary);
+        font-size: 15px;
+        line-height: 21px;
+
+        &:hover {
+          text-decoration: underline;
+          transition: 0.2s;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  color: var(--extBlack);
+
+  .title {
+    @include h3;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .info {
+    border: 1px solid var(--extGray2);
+    border-radius: 16px;
+    padding: 16px;
+
+    .row {
+      @include r1;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+
+      .name {
+        @include r1-b;
+        align-items: center;
+        color: var(--extBlack);
+        display: flex;
+        gap: 8px;
+
+        span {
+          height: 20px;
+        }
+      }
+    }
+
+    .separator {
+      border-bottom: 1px solid var(--extGray2);
+      margin: 16px 0;
+    }
+
+    .data {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  background-color: var(--extGray1);
+  padding: 24px 16px;
+
+  .titleWrap {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+
+    .title {
+      @include h1;
+      background-color: var(--extGray2);
+      border-radius: 32px;
+      padding: 3px 12px 5px;
+    }
+  }
+}

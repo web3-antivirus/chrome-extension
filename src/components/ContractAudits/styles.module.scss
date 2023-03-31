@@ -1,0 +1,24 @@
+.wrap {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+  margin-top: 24px;
+
+  a {
+    height: 32px;
+  }
+
+  .count {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    color: var(--extBlack);
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    height: 32px;
+    justify-content: center;
+    line-height: 21px;
+    width: 32px;
+  }
+}

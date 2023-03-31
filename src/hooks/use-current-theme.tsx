@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import browser from 'webextension-polyfill';
 import { setValueToChromeStorage, getValueToChromeStorage, subscribeChangesChromeStorage } from 'helpers/chrome-storage.helpers';
 import { STORAGE_THEME } from 'constants/chrome-storage.constants';
 import { getSiteName } from 'helpers/url.helpers';
@@ -91,7 +92,7 @@ export const useCurrentTheme = (): TReturnUseCurrentTheme => {
 
   useEffect(() => {
     // NOTE: this code is needed to set the default theme when working in http://localhost:3000
-    if (!chrome.storage) {
+    if (!browser.storage) {
       document.body.classList.add(DEFAULT_THEME);
     }
     // end

@@ -2,7 +2,7 @@
 
 .checkboxContainer {
   box-sizing: content-box;
-  display: inline-block;
+  display: flex;
 
   .label {
     @include body-l(600);

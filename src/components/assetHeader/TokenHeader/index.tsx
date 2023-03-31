@@ -1,12 +1,16 @@
 import { FC } from 'react';
-import cn from 'classnames';
 
-import Address from 'components/Address';
-import alertIcon from 'assets/images/icons/danger.svg';
 import { getImageUrl } from 'helpers/image.helpers';
+import Token from 'components/Token';
+import { TSocials } from 'components/Socials/interfaces';
+import alertIcon from 'assets/images/icons/alert-circle.svg';
+import verifiedIcon from 'assets/images/icons/verified-redesign.svg';
+import { AuditsData } from 'modules/analyze/Scan/interfaces';
+import ContractAudits from 'components/ContractAudits';
 
 import AssetHeader from '..';
 import styles from './styles.module.scss';
+import ContractInfo from '../components/ContractInfo';
 
 interface Props {
   handleGoBack: () => void;
@@ -15,25 +19,31 @@ interface Props {
   isAddressVerified: boolean;
   description?: string;
   hasRisk?: boolean;
+  isProxy?: boolean;
+  socials?: TSocials;
+  tokenImage?: string;
+  isVerified?: boolean;
+  link?: string;
+  audits?: AuditsData;
+  isRounded?: boolean;
 }
 
 const TokenHeader: FC<Props> = ({
-  handleGoBack, address, isAddressVerified, name, description, hasRisk,
+  handleGoBack, address, isAddressVerified, name, description,
+  hasRisk, isProxy, socials, tokenImage, isVerified, link, audits, isRounded,
 }) => (
   <AssetHeader handleGoBack={handleGoBack}>
     <div>
-      <div className={styles.header}>
-        <h1 className={styles.name}>{name}</h1>
-        {hasRisk && (
-          <img
-            className={cn(styles.icon, styles.risksIcon)}
-            src={getImageUrl(alertIcon)}
-            alt="has risks"
-          />
-        )}
-      </div>
+      <Token
+        name={name}
+        link={link}
+        image={tokenImage}
+        icon={(hasRisk || isVerified) ? getImageUrl(hasRisk ? alertIcon : verifiedIcon) : ''}
+        isRounded={isRounded}
+      />
       {description && <div className={styles.description}>{description}</div>}
-      {address && <Address address={address} isVerified={isAddressVerified} />}
+      <ContractInfo address={address} isAddressVerified={isAddressVerified} isProxy={isProxy} socials={socials} />
+      {audits && <ContractAudits data={audits} />}
     </div>
   </AssetHeader>
 );
@@ -41,6 +51,13 @@ const TokenHeader: FC<Props> = ({
 TokenHeader.defaultProps = {
   description: '',
   hasRisk: false,
+  isProxy: false,
+  socials: undefined,
+  tokenImage: '',
+  isVerified: false,
+  link: '',
+  audits: undefined,
+  isRounded: false,
 };
 
 export default TokenHeader;

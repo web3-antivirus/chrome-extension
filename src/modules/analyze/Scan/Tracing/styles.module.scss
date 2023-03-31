@@ -1,0 +1,45 @@
+@import '../../../../assets/scss/helpers/mixins';
+
+.tracingWrapper {
+  background: var(--ext1);
+  padding: 16px 0 8px;
+  width: 434px;
+
+  .button {
+    align-items: center;
+    border: 1px solid var(--ext2);
+    border-radius: 32px;
+    color: var(--ext2);
+    display: flex;
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 16px;
+    padding: 8px 24px;
+
+    &:hover {
+      opacity: 0.8;
+      transition: 0.3s all ease;
+    }
+
+    img {
+      margin-right: 4px;
+    }
+  }
+
+  .header {
+    margin-bottom: 16px;
+    padding: 0 16px;
+  }
+
+  .title {
+    color: var(--ext19);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+
+  .footer {
+    border-top: 0.5px solid var(--ext27);
+    margin: 16px;
+  }
+}

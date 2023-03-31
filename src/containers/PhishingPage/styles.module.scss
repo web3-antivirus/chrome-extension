@@ -69,9 +69,12 @@
     @include r2();
   }
 
+  .logoWrap {
+    margin-top: 178px;
+  }
+
   .logo {
     height: 32px;
-    margin-top: 178px;
     width: 226px;
   }
 }

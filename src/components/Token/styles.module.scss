@@ -1,26 +1,35 @@
 @import 'assets/scss/helpers/typography';
 
-.item {
+.wrap {
   align-items: center;
-  column-gap: 12px;
-  display: grid;
-  grid-template-areas: 'image name';
-  grid-template-columns: 40px 1fr;
-  margin-bottom: 16px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
   margin-top: 8px;
 }
 
-.name {
-  @include body-xl;
-  color: var(--extBlack);
-  grid-area: name;
-  line-height: 22px;
+.nameWrap {
+  align-items: center;
+  display: flex;
+
+  .name {
+    @include h1;
+    color: var(--extBlack);
+  }
 }
 
 .image {
-  border-radius: 50%;
-  grid-area: image;
-  height: 40px;
-  object-fit: cover;
-  width: 40px;
+  height: 48px;
+  object-fit: contain;
+  width: 48px;
+
+  &.isRounded {
+    border-radius: 50%;
+  }
+}
+
+.icon {
+  height: 16px;
+  margin-left: 6px;
+  width: 16px;
 }

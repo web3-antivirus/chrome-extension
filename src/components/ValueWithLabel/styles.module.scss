@@ -1,0 +1,14 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  .label {
+    @include r2;
+    color: var(--extGray5);
+    margin-bottom: 2px;
+  }
+
+  .value {
+    @include r1;
+    color: var(--extBlack);
+  }
+}

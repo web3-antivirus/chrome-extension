@@ -6,6 +6,7 @@ export const STORAGE_IS_TURN_ON_WEB3_GUARD = 'isTurnOnWeb3Guard';
 export const STORAGE_INSTALL_CHECKED = 'installChecked';
 export const STORAGE_TOKEN = 'userToken';
 export const CHECKED_URLS = 'checkedUrls';
+export const PREVIOUS_URL = 'previousURL';
 
 export const SESSION_WHITELIST = 'sessionWhitelist';
 export const STORAGE_IS_PAUSED = 'storagePause';

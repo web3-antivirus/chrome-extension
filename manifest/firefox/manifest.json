@@ -1,0 +1,50 @@
+{
+  "name": "Web3 Antivirus",
+  "description": "The security tool protects you from web3 scams by auditing transactions and detecting phishing websites.",
+  "version": "0.6.2",
+  "manifest_version": 2,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "w3a@tech.com",
+      "strict_min_version": "42.0"
+    }
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "default_popup": "index.html",
+    "default_title": "Web3 Antivirus"
+  },
+  "permissions": ["storage", "unlimitedStorage", "tabs", "management", "cookies", "scripting", "alarms", "activeTab", "<all_urls>"],
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "browser-polyfill.js",
+        "/static/js/inject.js"
+      ],
+      "css": [
+        "/static/css/main.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": ["browser-polyfill.js", "static/media/*", "script/main.js", "tracing.html", "static/css/inject.css", "static/js/inject.js", "https://checknft.io/*"],
+  "background": {
+    "scripts": ["browser-polyfill.js", "main.js"]
+  },
+  "homepage_url": "https://web3antivirus.io/"
+}
+
+

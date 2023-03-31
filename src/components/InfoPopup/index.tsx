@@ -12,12 +12,12 @@ type Props = StrictPopupProps & {
 }
 
 const InfoPopup: FC<Props> = ({
-  styleType, content, className, ...props
+  styleType, content, className, position = 'bottom center', ...props
 }) => (
   <Popup
     styleType={styleType || 'white'}
     content={content}
-    position="top center"
+    position={position}
     trigger={<span className={styles.wrap}><InfoIcon classNames={cn(styles.icon, className)} /></span>}
     on="hover"
     {...props}

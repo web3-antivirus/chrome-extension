@@ -1,0 +1,29 @@
+@import '../../../../assets/scss/helpers/mixins';
+@import '../../../../assets/scss/helpers/typography';
+
+.wrap {
+  background: var(--ext1);
+  padding: 24px 16px;
+
+  .message {
+    padding: 0;
+
+    .title {
+      @include h1();
+      @include h1(var(--ext12));
+      margin-bottom: 8px;
+    }
+
+    .text {
+      @include r1(var(--ext31));
+      margin-bottom: 24px;
+      padding: 0;
+      text-align: left;
+    }
+  }
+
+  .button {
+    padding: 0;
+    width: 100%;
+  }
+}

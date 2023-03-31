@@ -1,0 +1,38 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  background: var(--extGray1);
+  border: 1px solid var(--extGray3);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  padding: 14px 16px 13px;
+
+  .header {
+    @include r1;
+    align-items: center;
+    color: var(--extGray5);
+    display: flex;
+    font-size: 15px;
+    font-weight: 400;
+    gap: 4px;
+    line-height: 21px;
+    margin-bottom: 8px;
+  }
+
+  .price {
+    color: var(--extBlack);
+    font-weight: 700;
+
+    .value {
+      font-size: 40px;
+      letter-spacing: -1px;
+      line-height: 49px;
+    }
+
+    .symbol {
+      font-size: 21px;
+      letter-spacing: -0.5px;
+      line-height: 26px;
+    }
+  }
+}

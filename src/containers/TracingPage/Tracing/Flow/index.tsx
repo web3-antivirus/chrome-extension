@@ -136,6 +136,7 @@ const Flow: FC<Props> = ({ transformedTree }) => {
         fitViewOptions={{ minZoom: 1, maxZoom: 1 }}
         minZoom={MIN_ZOOM}
         maxZoom={MAX_ZOOM}
+        nodesFocusable={false}
       >
         <div className={styles.fixedContainersTop}>
           <PositionControl />

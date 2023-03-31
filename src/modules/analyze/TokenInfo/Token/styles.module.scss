@@ -1,0 +1,68 @@
+@import 'assets/scss/helpers/typography';
+
+.values {
+  column-gap: 2px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 16px;
+}
+
+.firstLabel,
+.secondLabel {
+  @include r2(var(--extGray4));
+}
+
+.firstCell,
+.secondCell {
+  @include r1;
+  font-weight: 400;
+}
+
+.secondLabel {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+}
+
+.percent {
+  color: var(--extGray4);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.minting {
+  margin-top: 16px;
+
+  .title {
+    @include r2(var(--extGray4));
+    margin-bottom: 2px;
+  }
+
+  .values {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .countText {
+    color: var(--extBlack);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+  }
+
+  .progressBar {
+    background-color: var(--extGray2);
+    border-radius: 4px;
+    height: 4px;
+    position: relative;
+
+    .progress {
+      background-color: var(--extPrimary);
+      border-radius: 4px;
+      height: 4px;
+    }
+  }
+}

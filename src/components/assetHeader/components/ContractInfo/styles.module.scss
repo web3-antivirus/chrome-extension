@@ -1,0 +1,17 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+
+  .proxy {
+    @include r2-b();
+    background: rgba(0, 0, 0, 0.07);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+    color: var(--extBlack);
+    padding: 3px 8px;
+  }
+}

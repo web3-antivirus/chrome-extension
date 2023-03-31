@@ -6,6 +6,7 @@ import { copyText } from 'helpers/common.helpers';
 import { getImageUrl } from 'helpers/image.helpers';
 import ethIcon from 'assets/images/icons/eth-icon.svg';
 import checkIcon from 'assets/images/icons/check-circle.svg';
+import alertIcon from 'assets/images/icons/alert-circle.svg';
 import Popup from 'components/Popup';
 import { getEtherscanAddressUrl } from 'helpers/url.helpers';
 
@@ -17,10 +18,11 @@ interface Props {
   isVerified?: boolean;
   className?: string;
   withChainIcon?: boolean;
+  alertOnNonVerified?: boolean;
 }
 
 const Address: FC<Props> = ({
-  address, isVerified, className, withChainIcon,
+  address, isVerified, className, withChainIcon, alertOnNonVerified,
 }) => {
   const [isOpenCopyPopup, setIsOpenCopyPopup] = useState(false);
 
@@ -32,15 +34,26 @@ const Address: FC<Props> = ({
 
   return (
     <div className={cn(styles.wrap, className)}>
-      {withChainIcon && <img className={styles.ethIcon} src={getImageUrl(ethIcon)} alt="ethereum" />}
-      <a href={getEtherscanAddressUrl(address)} target="_blank" rel="noreferrer" className={styles.address}>{formatAddress(address)}</a>
-      {isVerified
+      {withChainIcon && (
+        <Popup
+          content="Chain: Ethereum"
+          trigger={<img className={styles.ethIcon} src={getImageUrl(ethIcon)} alt="ethereum" />}
+        />
+      )}
+      <Popup
+        content={address}
+        trigger={(
+          <a href={getEtherscanAddressUrl(address)} target="_blank" rel="noreferrer" className={styles.address}>
+            {formatAddress(address)}
+          </a>
+        )}
+      />
+      {(isVerified !== undefined && (isVerified || alertOnNonVerified))
       && (
         <Popup
           styleType="white"
-          content="The contract verified by Etherscan"
-          position="bottom right"
-          trigger={<img className={styles.verifiedIcon} src={getImageUrl(checkIcon)} alt="verified" />}
+          content={isVerified ? 'Verified by Etherscan' : 'Not verified by Etherscan'}
+          trigger={<img className={styles.verifiedIcon} src={getImageUrl(isVerified ? checkIcon : alertIcon)} alt="verified" />}
         />
       )}
       <Popup
@@ -59,9 +72,10 @@ const Address: FC<Props> = ({
 };
 
 Address.defaultProps = {
-  isVerified: false,
+  isVerified: undefined,
   className: '',
   withChainIcon: true,
+  alertOnNonVerified: false,
 };
 
 export default Address;

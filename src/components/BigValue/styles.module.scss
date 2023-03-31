@@ -1,0 +1,17 @@
+@import '../../assets/scss/helpers/typography';
+
+.wrap {
+  &.bigValue {
+    text-decoration: underline dashed 1px;
+    text-decoration-color: inherit;
+    text-underline-offset: 3px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.popup {
+  max-width: inherit !important;
+}

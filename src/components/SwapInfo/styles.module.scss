@@ -22,15 +22,20 @@
       display: flex;
       min-width: 30%;
 
-      img {
+      .tokenImage,
+      .nftImageWrap {
         margin-right: 8px;
       }
 
-      .name {
+      .name,
+      .collectionName {
         @include ellipsis-text();
-        color: var(--extBlack);
-        max-width: 240px;
+        max-width: 230px;
         white-space: nowrap;
+      }
+
+      .name {
+        color: var(--extBlack);
 
         &.link {
           @include link;
@@ -38,30 +43,67 @@
           line-height: 21px;
         }
       }
+
+      .collectionName {
+        @include r3;
+        color: var(--extGray5);
+        margin-top: 2px;
+      }
     }
 
     .value {
-      color: var(--extError);
-      font-weight: 700;
+      @include r1;
+      color: var(--extBlack);
 
-      &.isIncome {
-        color: var(--extPrimary);
+      .usdPrice {
+        @include r3;
+        color: var(--extGray5);
+        margin-top: 2px;
+        text-align: right;
       }
     }
 
     &.nft {
-      img {
-        border-radius: 6px;
-        height: 35px;
-        width: 36px;
+      .nftImageWrap {
+        position: relative;
+
+        .nftImage {
+          border-radius: 8px;
+          height: 48px;
+          width: 48px;
+        }
+      }
+
+      .marketplaceIcon {
+        background-color: var(--extWhite);
+        border: 1.5px solid var(--extWhite);
+        border-radius: 50%;
+        bottom: 0;
+        height: 18px;
+        position: absolute;
+        right: -4px;
+        width: 18px;
       }
     }
 
     &.token {
-      img {
+      .tokenImage {
         border-radius: 50%;
         height: 24px;
         width: 24px;
+      }
+    }
+
+    .nameWrap {
+      .count {
+        background: var(--extGray2);
+        border-radius: 24px;
+        color: var(--extBlack);
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 14px;
+        margin-left: 4px;
+        padding: 2px 4.5px;
       }
     }
   }
@@ -89,6 +131,60 @@
         height: 16px;
         min-width: 16px;
         width: 16px;
+      }
+    }
+  }
+}
+
+.top {
+  align-items: center;
+  display: flex;
+}
+
+.washTrading {
+  align-items: center;
+  display: flex;
+  gap: 2px;
+  margin-left: 6px;
+
+  .percent {
+    background: rgba(228, 92, 81, 0.1);
+    border-radius: 16px;
+    color: var(--extError);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 13px;
+    padding: 1.5px 3px 1.5px 4px;
+  }
+}
+
+.washTradingPopup {
+  @include r2;
+  color: var(--extGray5);
+  min-width: 216px;
+
+  .row {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+
+    .value {
+      align-items: center;
+      color: var(--extBlack);
+      display: flex;
+      gap: 6px;
+
+      .count {
+        color: var(--extGray5);
+      }
+
+      .percent {
+        color: var(--extError);
       }
     }
   }

@@ -4,10 +4,10 @@ import {
 import { Handle, Position } from 'reactflow';
 import { NodeProps } from '@reactflow/core/dist/esm/types/nodes';
 import cn from 'classnames';
-import { getRiskTypeFromRisk } from 'helpers/analyze.helpers';
-import { RISK_TYPE } from 'constants/risks.constants';
-import alertIcon from 'assets/images/icons/danger.svg';
+import { getRiskInfoFromRisk } from 'helpers/analyze.helpers';
+import alertIcon from 'assets/images/icons/alert-circle.svg';
 import { getImageUrl } from 'helpers/image.helpers';
+import Popup from 'components/Popup';
 
 import { separateAddress } from '../../../../../helpers/address.helpers';
 import { fromWeiWithoutFormat } from '../../../../../helpers/big-number.helpers';
@@ -41,7 +41,7 @@ const TracingBlock: FC<NodeProps<Props>> = ({
   const onClose = () => {
     setModalOpen(false);
   };
-  const hasRisk = useMemo(() => getRiskTypeFromRisk(risk) !== RISK_TYPE.LOW, [risk]);
+  const { hasRisk, text } = useMemo(() => getRiskInfoFromRisk(risk), [risk]);
 
   const countParams = useMemo(() => (params ? getCountParams(params) : EMPTY_NAME), [params]);
 
@@ -57,33 +57,41 @@ const TracingBlock: FC<NodeProps<Props>> = ({
   return (
     <>
       <div className={cn(styles.tracingBlock, { [styles.pointer]: params })}>
-        <button className={styles.openModalButton} disabled={isDisable} onClick={handleOpenModal} aria-label="openModal" />
-        <div className={styles.tracingInformation}>
-          <p className={styles.bold}><span className={styles.bold}>{transformNameMethod(name) ?? EMPTY_NAME}</span>({countParams})</p>
-          <div className={styles.blockInfo}>
-            <p className={styles.address}>
-              Address:
-              {hasRisk && <img className={styles.alertIcon} src={getImageUrl(alertIcon)} alt="" /> }
-              <a href={getEtherscanAddressUrl(address)} target="_blank" rel="noreferrer" className={styles.link}>
-                {separateAddress(address)}
-              </a>
-            </p>
-            {events.map((event) => (
-              <p key={event.name}>
-                Event:
-                <span> {transformNameMethod(event.name)}
-                  <span> ({event.params ? getCountParams(event.params) : EMPTY_NAME})</span>
-                </span>
+        <button className={styles.openModalButton} disabled={isDisable} onClick={handleOpenModal} aria-label="openModal">
+          <div className={styles.tracingInformation}>
+            <p className={styles.bold}><span className={styles.bold}>{transformNameMethod(name) ?? EMPTY_NAME}</span>({countParams})</p>
+            <div className={styles.blockInfo}>
+              <p className={styles.address}>
+                Address:
+                {hasRisk && (
+                  <Popup
+                    content={text}
+                    trigger={(
+                      <img className={styles.alertIcon} src={getImageUrl(alertIcon)} alt="" />
+                    )}
+                  />
+                )}
+                <a href={getEtherscanAddressUrl(address)} target="_blank" rel="noreferrer" className={styles.link}>
+                  {separateAddress(address)}
+                </a>
               </p>
-            ))}
+              {events.map((event) => (
+                <p key={event.name}>
+                  Event:
+                  <span> {transformNameMethod(event.name)}
+                    <span> ({event.params ? getCountParams(event.params) : EMPTY_NAME})</span>
+                  </span>
+                </p>
+              ))}
+            </div>
+            <p>
+              <span className={styles.bold}>
+                {fromWeiWithoutFormat(parseInt(value ?? '0x0', 16), 18)}
+              </span>
+              <span className={styles.bold}>ETH</span>
+            </p>
           </div>
-          <p>
-            <span className={styles.bold}>
-              {fromWeiWithoutFormat(parseInt(value ?? '0x0', 16), 18)}
-            </span>
-            <span className={styles.bold}>ETH</span>
-          </p>
-        </div>
+        </button>
       </div>
       {!isRoot && (
         <Handle

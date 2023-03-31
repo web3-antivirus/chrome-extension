@@ -3,6 +3,7 @@ import { useMemo, FC } from 'react';
 import cn from 'classnames';
 import { createPortal } from 'react-dom';
 import { useScreenContext } from 'components/ScreenProvider';
+import { getShadowRoot } from 'helpers/common.helpers';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 
 const Layout: FC<Props> = ({ children, headerChild }) => {
   const { screen, handleSetScreen } = useScreenContext();
+  const root = getShadowRoot();
 
   const renderScreen = useMemo(() => children, [screen, handleSetScreen]);
 
@@ -22,7 +24,7 @@ const Layout: FC<Props> = ({ children, headerChild }) => {
         {renderScreen}
       </div>
     </div>,
-    document.body,
+    root || document.body,
   );
 };
 

@@ -1,13 +1,27 @@
-import { FC, useEffect, useState } from 'react';
-import stubIcon from 'assets/images/no-token-avatar.svg';
+import {
+  FC, useEffect, useRef, useState,
+} from 'react';
+import stubIcon from 'assets/images/collection/nft-stub.svg';
 import { getImageUrl } from 'helpers/image.helpers';
 
-type Props = React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+type Props = React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & { stub?: string }
 
-const TokenImage: FC<Props> = ({ alt, src, ...props }) => {
+const TokenImage: FC<Props> = ({
+  alt, src, stub = stubIcon, ...props
+}) => {
   const [hasError, setHasError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imageSrc = !isLoaded || hasError ? getImageUrl(stubIcon) : src;
+  const [loaded, setLoaded] = useState(false);
+  const ref = useRef<HTMLImageElement>(null);
+
+  const onLoad = () => setLoaded(true);
+
+  useEffect(() => {
+    if (ref.current && ref.current.complete) {
+      onLoad();
+    }
+  });
+
+  const imageSrc = !loaded || hasError ? getImageUrl(stub) : src;
 
   useEffect(() => {
     setHasError(false);
@@ -19,9 +33,14 @@ const TokenImage: FC<Props> = ({ alt, src, ...props }) => {
       loading="lazy"
       src={imageSrc}
       onError={() => setHasError(true)}
-      onLoad={() => setIsLoaded(true)}
+      onLoad={onLoad}
       {...props}
     />
   );
 };
+
+TokenImage.defaultProps = {
+  stub: stubIcon,
+};
+
 export default TokenImage;

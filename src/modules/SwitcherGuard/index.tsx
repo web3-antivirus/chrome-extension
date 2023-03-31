@@ -2,6 +2,7 @@ import { FC } from 'react';
 import cn from 'classnames';
 import { Checkbox, CheckboxProps } from 'semantic-ui-react';
 import 'semantic-ui-css/components/checkbox.min.css';
+import browser from 'webextension-polyfill';
 
 import { CHANGE_ICON_OFF, CHANGE_ICON_ON } from 'constants/chrome-send-message.constants';
 import styles from './styles.module.scss';
@@ -17,9 +18,9 @@ const SwitcherGuard: FC<Props> = ({ isTurnOnWeb3Guard, toggleValue, ...props }) 
     toggleValue(Boolean(isTurnOnWeb3Guard));
 
     if (isTurnOnWeb3Guard) {
-      chrome.runtime.sendMessage({ message: CHANGE_ICON_OFF });
+      browser.runtime.sendMessage({ message: CHANGE_ICON_OFF }).catch(() => null);
     } else {
-      chrome.runtime.sendMessage({ message: CHANGE_ICON_ON });
+      browser.runtime.sendMessage({ message: CHANGE_ICON_ON }).catch(() => null);
     }
   };
 

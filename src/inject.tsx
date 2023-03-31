@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom';
+import browser from 'webextension-polyfill';
 import PageInject from 'pages/inject';
 import 'assets/scss/global.scss';
 import { addFontsToInjectPage } from 'helpers/fonts.helpers';
-import { CHROME_PROD_ID } from 'constants/common.constants';
 
 const app = document.createElement('div');
 app.setAttribute('id', 'web3-antivirus-host');
@@ -18,7 +18,6 @@ if (extensionRoot) {
   }
   // Create the shadow root
   const { shadowRoot } = extensionRoot;
-  const extensionId = chrome.runtime?.id || CHROME_PROD_ID;
 
   if (shadowRoot) {
     let div = shadowRoot.getElementById('web3-antivirus');
@@ -30,8 +29,9 @@ if (extensionRoot) {
       shadowRoot.appendChild(div);
 
       const link = document.createElement('link');
+      const stylesLink = browser.runtime?.getURL('static/css/inject.css');
       link.setAttribute('rel', 'stylesheet');
-      link.setAttribute('href', `chrome-extension://${extensionId}/static/css/inject.css`);
+      link.setAttribute('href', stylesLink);
       shadowRoot.appendChild(link);
       ReactDOM.render(<PageInject />, div);
     }

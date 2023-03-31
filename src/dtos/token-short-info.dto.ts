@@ -1,3 +1,5 @@
+import { CollectionDescriptor, TokenEntity } from 'interfaces/analyze.interfaces';
+
 export interface TokenShortInfoDTO {
   externalId: string;
   contractAddress: string;
@@ -24,4 +26,9 @@ export interface PaymentTokenEntity {
   imageUrl: string;
   name: string;
   decimals: number;
+}
+
+export interface TokensCollectionsDTO {
+  tokens: TokenEntity[];
+  collections: CollectionDescriptor[];
 }

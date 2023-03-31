@@ -35,6 +35,11 @@
           align-items: center;
           color: var(--extPrimary);
           display: flex;
+
+          &:hover {
+            text-decoration: underline;
+            transition: 0.2;
+          }
         }
       }
     }

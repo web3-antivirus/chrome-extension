@@ -1,6 +1,6 @@
+import qs from 'qs';
 import { ETH_EXPLORER_URL } from 'constants/blockchains.constants';
 import { CHECK_NFT_PATH } from 'constants/check-nft.constants';
-import qs from 'qs';
 
 export const getSiteName = (url?: string): string => {
   const domain = url && (new URL(url));
@@ -49,3 +49,4 @@ export const getEtherscanAddressUrl = (address: string): string => `${ETH_EXPLOR
 
 export const getTokenUrl = (address: string, id: string): string => `${CHECK_NFT_PATH}token/${address}/${id}`;
 export const getCollectionUrl = (address: string, id: string): string => `${CHECK_NFT_PATH}search/?collection=${id}&query=${address}`;
+export const removeSubDomainFromUrl = (url: string): string => url.replace('www.', '');

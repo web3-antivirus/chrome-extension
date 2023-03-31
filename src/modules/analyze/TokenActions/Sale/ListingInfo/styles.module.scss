@@ -1,0 +1,51 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  color: var(--extBlack);
+
+  .title {
+    @include h3;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .info {
+    border: 1px solid var(--extGray2);
+    border-radius: 16px;
+    padding: 16px;
+
+    .row {
+      @include r1;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+
+      &:first-child:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      .name {
+        align-items: center;
+        color: var(--extGray5);
+        display: flex;
+        gap: 4px;
+      }
+
+      .percent {
+        color: var(--extGray5);
+        margin-right: 8px;
+      }
+
+      .bold {
+        font-weight: 700;
+      }
+    }
+
+    .separator {
+      border-bottom: 1px solid var(--extGray2);
+      margin: 16px 0;
+    }
+  }
+}

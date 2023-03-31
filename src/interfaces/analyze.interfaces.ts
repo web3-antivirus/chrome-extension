@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable max-classes-per-file */
 
-import { Service3Descriptor } from 'types/fetch.type';
+import { AnalyzeResult, Service3Descriptor } from 'types/fetch.type';
 
 export enum ProjectAnalysisStatus {
   /**
@@ -71,6 +71,29 @@ export declare type CollectionStatisticDTO = {
   sales: number;
 };
 
+export interface Service4Analysis {
+  hasApprove: boolean;
+  approveMethod: string; // hex
+  hasMint: boolean;
+  mintMethod: string; // hex
+  hasBurn: boolean;
+  burnMethod: string; // hex
+  hasPause: boolean;
+  pauseMethod: string; // hex
+  hasTransfer: boolean;
+  transferMethod: string; // hex
+  cap: string; // hex
+  totalSupply: string; // hex
+}
+
+export interface Service5Analysis {
+  transferNotExist?: boolean;
+  balanceFieldNotFound?: boolean;
+  balanceLocked?: boolean;
+}
+
+export type Service5Descriptor = AnalyzeResult<Service5Analysis>;
+
 export declare type ContractCodeAnalysisDTO = {
   name: string;
   verified: boolean;
@@ -82,6 +105,10 @@ export declare type ContractCodeAnalysisDTO = {
   };
   service2: any;
   service3: Service3Descriptor;
+  service4: AnalyzeResult<Service4Analysis>;
+  service5: Service5Descriptor;
+  service6: BalanceLockAnalysisGroup;
+  service7: OwnerPermissionsAnalysisGroup;
 };
 
 export declare type ContractScamAnalysisDTO = {
@@ -130,6 +157,8 @@ export declare type Web3ContractEntityDTO = {
   decimals: number | null;
   securityLevel: SECURITY_LEVEL;
   socials: Socials;
+  lastPriceETH: string | null;
+  lastPriceUSD: string | null;
 };
 
 export namespace Web3ContractEntity {
@@ -198,6 +227,8 @@ export declare type ApproveMethodDescriptor = {
 
 export declare type TransactionOperationsDescriptor = {
   eth: string;
+  receivedETH: string;
+  ethToUSDCoeff: string | null;
   from: Array<TransferMethodDescriptor>;
   to: Array<TransferMethodDescriptor>;
   approves: Array<ApproveMethodDescriptor>;
@@ -382,6 +413,76 @@ export namespace TokenEntity {
   }
 }
 
+interface BaseEntity {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Web3ContractAuditEntity extends BaseEntity {
+  address: string;
+  vulnerabilities: string[];
+  auditor: string;
+  auditUrl: string;
+  auditedAt: string;
+}
+
+export interface BalanceLimitAnalysis {
+  transferNotExist?: boolean;
+  balanceFieldNotFound?: boolean;
+  balanceLocked?: boolean;
+}
+export interface SimpleBalanceAnalysis {
+  methodNotExist?: boolean;
+  actionIsNotSupported?: boolean;
+  actionAllowed?: boolean;
+}
+export type SimpleBalanceAnalysisDescriptor = AnalyzeResult<SimpleBalanceAnalysis>;
+
+export interface BalanceApproveLockAnalysis extends SimpleBalanceAnalysis {
+  methodNotExist?: boolean;
+  approveNotAllowed?: boolean;
+}
+export type BalanceApproveLockAnalysisDescriptor = AnalyzeResult<BalanceApproveLockAnalysis>;
+
+export interface BalanceLockAnalysisGroup {
+  transferManyTokens: SimpleBalanceAnalysisDescriptor;
+  transferFewTokens: SimpleBalanceAnalysisDescriptor;
+  approveTokens: BalanceApproveLockAnalysisDescriptor;
+  severalTransfers: SimpleBalanceAnalysisDescriptor;
+}
+
+export interface OwnerMintPermissionsAnalysis extends SimpleBalanceAnalysis {
+  capNotFound?: boolean;
+}
+
+export type OwnerMintPermissionsAnalysisDescriptor = AnalyzeResult<OwnerMintPermissionsAnalysis>;
+
+export interface OwnerPermissionsAnalysisGroup {
+  transfer: SimpleBalanceAnalysisDescriptor;
+  burn: SimpleBalanceAnalysisDescriptor;
+  mint: OwnerMintPermissionsAnalysisDescriptor;
+}
+
+export interface WashTradingStatistic {
+  tokenId: number;
+  numOfWashTradings: number;
+  numOfSales: number;
+}
+
+export interface ApproveRecipientDescriptor {
+  address: string;
+  name: string;
+  avatarURL: string;
+  numOfTokens: number;
+  volumeUSD: number;
+}
+
+export interface ApprovedTokensVolumeDescriptor {
+  volumeUSD: number;
+  volumeETH: string;
+}
+
 export type AnalyzeTransactionResponse = {
   activeProjectId: number;
   projects: Array<Web3ProjectEntity>;
@@ -391,5 +492,9 @@ export type AnalyzeTransactionResponse = {
   traceOperations: TransactionOperationsDescriptor;
   contractsAnalysis: Array<ContractAnalysisDTO>;
   trace: Array<any>;
-  contracts: Array<Web3ContractEntityDTO>
+  contracts: Array<Web3ContractEntityDTO>;
+  audits: Array<Web3ContractAuditEntity>;
+  washTradingStatistics: Array<WashTradingStatistic>;
+  approveRecipients: Array<ApproveRecipientDescriptor>;
+  approvedTokensVolume: ApprovedTokensVolumeDescriptor;
 };

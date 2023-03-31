@@ -3,7 +3,7 @@ import cn from 'classnames';
 import InfoPopup from 'components/InfoPopup';
 import alertIcon from 'assets/images/icons/danger.svg';
 import { getImageUrl } from 'helpers/image.helpers';
-import { ApprovesDetails } from 'modules/Scan/interfaces';
+import { ApprovesDetails } from 'modules/analyze/Scan/interfaces';
 
 import Address from 'components/Address';
 import styles from './styles.module.scss';

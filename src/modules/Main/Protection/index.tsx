@@ -10,6 +10,8 @@ import { useToggle } from 'context/toggle.context';
 import { addMinutesToDate } from 'helpers/time.helpers';
 import { CHANGE_ICON_OFF, CHANGE_ICON_ON } from 'constants/chrome-send-message.constants';
 
+import browser from 'webextension-polyfill';
+
 import styles from './styles.module.scss';
 import Countdown from './Countdown';
 
@@ -23,24 +25,26 @@ const Protection: FC = () => {
   const handleChange = () => {
     if (pause.isPaused) {
       handleResetPause();
-      chrome.runtime.sendMessage({ message: CHANGE_ICON_ON });
+      browser.runtime.sendMessage({ message: CHANGE_ICON_ON }).catch(() => null);
     } else {
-      chrome.runtime.sendMessage({ message: CHANGE_ICON_OFF });
+      browser.runtime.sendMessage({ message: CHANGE_ICON_OFF }).catch(() => null);
       handleSetPause(addMinutesToDate(new Date(), PAUSE_DURATION_MINUTES).toISOString());
     }
   };
 
   return (
     <div className={styles.wrap}>
-      <h3 className={styles.title}>{pause.isPaused ? 'W3A is paused' : 'W3A is running in the background'}</h3>
-      {pause.isPaused && <div className={styles.description}>Enable background monitoring to stay secure.</div>}
+      <h3 className={styles.title}>Protection
+      </h3>
+      <div className={styles.description}>{pause.isPaused
+        ? 'Enable background monitoring to stay secure.' : 'W3A actively protects your browsing in the background.'}
+      </div>
       <div className={styles.status}>
         <div className={styles.info}>
           <img className={styles.icon} src={getImageUrl(pause.isPaused ? turnOffIcon : turnOnIcon)} alt="" />
-          Active protection
+          Real-time protection
         </div>
         <div className={styles.toggle}>
-          <span>{pause.isPaused ? 'PAUSED' : 'ON'}</span>
           <Checkbox
             className={cn(styles.switcher, {
               [styles.checked]: !pause.isPaused,

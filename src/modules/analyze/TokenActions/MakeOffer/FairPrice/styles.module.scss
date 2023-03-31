@@ -1,0 +1,68 @@
+@import 'assets/scss/helpers/typography';
+
+.wrap {
+  margin-bottom: 24px;
+}
+
+.info {
+  align-items: center;
+  column-gap: 6px;
+  display: flex;
+}
+
+.title {
+  @include h3();
+}
+
+.label {
+  @include r2-b();
+  border: 1px solid transparent;
+  border-radius: 6px;
+  margin-left: auto;
+  padding: 2px 7px;
+}
+
+.high {
+  border-color: var(--extPrimary);
+  color: var(--extPrimary);
+}
+
+.medium {
+  border-color: var(--extWarning);
+  color: var(--extWarning);
+}
+
+.low {
+  border-color: var(--extError);
+  color: var(--extError);
+}
+
+.fairPrice {
+  align-items: center;
+  border: 1px solid var(--extGray2);
+  border-radius: 16px;
+  column-gap: 8px;
+  display: flex;
+  margin-top: 8px;
+  padding: 12px 15px 13px;
+}
+
+.price {
+  @include h1();
+}
+
+.percent {
+  @include r2(var(--extGray5));
+  background-color: var(--extGray1);
+  border-radius: 5px;
+  line-height: 13px;
+  padding: 1.5px 4px 1.5px 3px;
+}
+
+.text {
+  @include r2();
+  background-color: var(--extGray1);
+  border-radius: 16px;
+  margin-top: 8px;
+  padding: 13px 15px;
+}
